@@ -3,13 +3,13 @@
         <div class="row justify-content-center gy-5">
             <p class="gy-2"></p>
             <h2 class="text-center">Quadros cadastrados</h2>
-            <div class="card" style="width: 15%; background-color: rgb(206, 223, 238);" *ngFor="let board of boardList">
+            <div class="card" style="width: 16rem; background-color: rgb(206, 223, 238);" *ngFor="let board of boardList">
                 <img src="../../../assets/BoardDefaultImage.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5>{{board.name}}</h5>
                     <p>{{board.description}}</p>
                     <button type="button" class="btn btn-secondary">Abrir board</button>
-                    <button type="button" class="btn btn-light">Editar</button>
+                    <button type="button" class="btn btn-light" (click)="openModalBoardEdit(board)">Editar</button>
                 </div>
             </div>
         </div>

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardListComponent } from './board-list/board-list.component';
-import { BoardEditComponent } from './board-edit/board-edit.component';
-
-
+import { ModalBoardEditComponent } from './modal-board-edit/modal-board-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     BoardListComponent,
-    BoardEditComponent
+    ModalBoardEditComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class BoardManagementModule { }

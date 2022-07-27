@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardEditComponent } from './board-edit.component';
+import { ModalBoardEditComponent } from './modal-board-edit.component';
 
-describe('BoardEditComponent', () => {
-  let component: BoardEditComponent;
-  let fixture: ComponentFixture<BoardEditComponent>;
+describe('ModalBoardEditComponent', () => {
+  let component: ModalBoardEditComponent;
+  let fixture: ComponentFixture<ModalBoardEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BoardEditComponent ]
+      declarations: [ ModalBoardEditComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BoardEditComponent);
+    fixture = TestBed.createComponent(ModalBoardEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

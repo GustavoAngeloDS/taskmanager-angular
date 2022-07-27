@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4> Editar Board </h4>
+</div>
+<div class="modal-body">
+    <div>
+        <div class="row">
+            <div class="col">
+                <p>Id:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" disabled value="{{board.id}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Nome:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="board.name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Descrição:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="board.description">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="updateBoard()">Salvar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+</div>
