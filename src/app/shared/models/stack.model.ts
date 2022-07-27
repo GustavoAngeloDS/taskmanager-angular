@@ -1,5 +1,6 @@
 export class Stack {
     constructor(
-        public id?: number, 
-        public name?: string) {}
+        public id?: number,
+        public name?: string,
+        public taskList?: Array<Task>) { }
 }

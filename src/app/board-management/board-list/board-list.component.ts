@@ -16,12 +16,12 @@ export class BoardListComponent implements OnInit {
 
   ngOnInit(): void {
     this.boardList.push(
-      new Board(1, "Board teste", "Descrição teste"), 
-      new Board(2, "Board teste", "Descrição teste"),
-      new Board(3, "Board teste", "Descrição teste"),
-      new Board(4, "Board teste", "Descrição teste"),
-      new Board(5, "Board teste", "Descrição teste"),
-      new Board(6, "Board teste", "Descrição teste")
+      new Board(1, "Board teste 1", "Descrição teste 1"), 
+      new Board(2, "Board teste 2", "Descrição teste 2"),
+      new Board(3, "Board teste 3", "Descrição teste 3"),
+      new Board(4, "Board teste 4", "Descrição teste 4"),
+      new Board(5, "Board teste 5", "Descrição teste 5"),
+      new Board(6, "Board teste 6", "Descrição teste 6")
       );
   }
 
