@@ -1,14 +1,11 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col" *ngFor="let stack of stackList">
-                <div>
-                    <h1>{{stack.name}}</h1>
-                    <li *ngFor="let task of (coluna.id!)" class="list-group-item"
-                        (dragstart)="setaTarefaSelecionada(tarefa)">
-                        <p>{{tarefa.descricao}}</p>
-                    </li>
-                </div>
+            <div class="col-2" *ngFor="let stack of board.stackList">
+                <h1 class="text-center">{{stack.name}}</h1>
+                <ol class="list-group" *ngFor="let task of stack.taskList">
+                    <li class="list-group-item">{{ task.title }}</li>
+                </ol>
             </div>
         </div>
     </div>
