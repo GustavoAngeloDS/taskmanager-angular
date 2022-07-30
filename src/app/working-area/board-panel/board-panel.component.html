@@ -1,11 +1,11 @@
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-2" *ngFor="let stack of board.stackList">
-                <h1 class="text-center">{{stack.name}}</h1>
-                <ol class="list-group" *ngFor="let task of stack.taskList">
-                    <li class="list-group-item">{{ task.title }}</li>
-                </ol>
+    <div cdkDropListGroup>
+        <div class="example-container" *ngFor="let stack of board.stackList">
+            <h2>{{stack.name}}</h2>
+
+            <div cdkDropList [cdkDropListData]="findTasksByStack(stack.id!)" class="example-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag>{{task.title}}</div>
             </div>
         </div>
     </div>

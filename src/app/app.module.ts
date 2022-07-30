@@ -8,6 +8,7 @@ import { UserOnboardingModule } from './user-onboarding/user-onboarding.module';
 import { WorkingAreaModule } from './working-area/working-area.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BoardManagementModule,
     WorkingAreaModule,
     UserOnboardingModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
