@@ -1,12 +1,29 @@
-<body>
-    <div cdkDropListGroup>
+<body class="container-fluid">
+
+    <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
+
+    <div cdkDropListGroup class="col">
         <div class="example-container" *ngFor="let stack of board.stackList">
             <h2>{{stack.name}}</h2>
 
             <div cdkDropList [cdkDropListData]="findTasksByStack(stack.id!)" class="example-list"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag>{{task.title}}</div>
+                <div class="example-box" *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag>{{task.title}}
+                </div>
             </div>
+        </div>
+        <div *ngIf="showNewStackButton==true">
+            <button type="button" class="btn btn-light" (click)="changeInsertMode()">
+                <i class="bi bi-plus-square"></i> <b> Nova stack</b>
+            </button>
+        </div>
+        <div *ngIf="isInsertingNewStack==true">
+            <input type="text" [(ngModel)]="newStackName">
+            <button type="button" class="btn btn-success" (click)="saveNewStack()"> <i class="bi bi-check-square"
+                    style="font-size: 20px;"></i></button>
+
+            <button type="button" class="btn btn-light" (click)="changeInsertMode()"><i class="bi bi-x-square"
+                    style="font-size: 20px;"></i></button>
         </div>
     </div>
 </body>

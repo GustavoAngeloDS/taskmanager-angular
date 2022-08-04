@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4> Novo Board </h4>
+</div>
+<div class="modal-body">
+    <div>
+        <div class="row">
+            <div class="col">
+                <p>Nome:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="board.name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Descrição:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="board.description">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="saveBoard()">Salvar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+</div>

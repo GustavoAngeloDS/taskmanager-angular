@@ -2,17 +2,27 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Board } from 'src/app/shared/models/board.model';
+import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model'
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-board-panel',
   templateUrl: './board-panel.component.html',
   styleUrls: ['./board-panel.component.css']
 })
-export class BoardPanelComponent implements OnInit {
+export class BoardPanelComponent extends PageBehavior implements OnInit {
   board!: Board;
-  constructor(private route: ActivatedRoute) { }
+
+  showNewStackButton: boolean = true;
+  isInsertingNewStack: boolean = false;
+
+  newStackName?: string;
+
+  constructor(private route: ActivatedRoute, private notificationService: NotificationService) {
+    super();
+  }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params['id'];
@@ -51,6 +61,27 @@ export class BoardPanelComponent implements OnInit {
   findTasksByStack(stackId: number): Array<Task> {
     let task = this.board.stackList?.find((stack) => stack.id === stackId);
     return task?.taskList === undefined ? [] : task?.taskList;
+  }
+
+  changeInsertMode(): void {
+    this.clearInputFields();
+
+    if (this.isInsertingNewStack) {
+      this.isInsertingNewStack = false;
+      this.showNewStackButton = true;
+    } else {
+      this.isInsertingNewStack = true;
+      this.showNewStackButton = false;
+    }
+  }
+
+  clearInputFields(): void {
+    this.newStackName = "";
+  }
+
+  saveNewStack(): void {
+    this.board.stackList?.push(new Stack(10, this.newStackName, undefined));
+    this.changeInsertMode();
   }
 
   drop(event: CdkDragDrop<Task[]>) {

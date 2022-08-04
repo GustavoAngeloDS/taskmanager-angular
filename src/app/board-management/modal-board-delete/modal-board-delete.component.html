@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h4> Remover o quadro {{ board.name }}?</h4>
+</div>
+<div class="modal-body">
+    <div class="row"><b>Esta ação não poderá ser desfeita</b></div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteBoard()">Excluir</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+</div>

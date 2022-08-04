@@ -7,6 +7,7 @@ import { BoardManagementModule } from './board-management/board-management.modul
 import { UserOnboardingModule } from './user-onboarding/user-onboarding.module';
 import { WorkingAreaModule } from './working-area/working-area.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BoardManagementModule,
     WorkingAreaModule,
     UserOnboardingModule,
-    BrowserAnimationsModule    
+    BrowserAnimationsModule,
+    SharedModule    
   ],
   providers: [],
   bootstrap: [AppComponent]
