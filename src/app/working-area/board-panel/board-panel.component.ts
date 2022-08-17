@@ -1,10 +1,14 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Action } from 'src/app/shared/enums/action';
 import { Board } from 'src/app/shared/models/board.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model'
+import { ModalStackEditComponent } from '../modal-stack-edit/modal-stack-edit.component';
+import { ModalTaskComponent } from '../modal-task/modal-task.component';
 import { WorkingAreaService } from '../services/working-area.service';
 
 @Component({
@@ -21,7 +25,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   newStackName?: string;
 
-  constructor(private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
+  constructor(private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
     super();
   }
 
@@ -32,7 +36,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   findBoard(boardId: string): void {
     this.isLoadCompleted = false;
-    
+
     this.workingAreaService.findBoardById(boardId).subscribe(
       (board) => this.board = board,
       () => { },
@@ -44,7 +48,9 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     this.workingAreaService.findStacksByBoard(boardId).subscribe(
       (stacks: Array<Stack>) => this.stackList = stacks,
       () => { },
-      () => { this.isLoadCompleted = true }
+      () => {
+        this.isLoadCompleted = true
+      }
     );
   }
 
@@ -92,5 +98,20 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
       this.saveNewTaskStack(this.board.id!, event.container.data[0].id!, newStackId!);
     }
+  }
+
+  openModalStackUpdate(stack: Stack): void {
+    const modal = this.modalService.open(ModalStackEditComponent);
+    modal.componentInstance.stack = stack;
+    modal.componentInstance.boardId = this.board.id!;
+    modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
+  }
+
+  openModalViewTask(task?: Task): void {
+    const modal = this.modalService.open(ModalTaskComponent);
+    modal.componentInstance.task = task;
+    modal.componentInstance.boardId = this.board.id;
+    modal.componentInstance.screenAction = Action.EDITING;
+    modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
   }
 }

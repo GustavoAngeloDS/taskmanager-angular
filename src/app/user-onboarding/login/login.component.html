@@ -1,0 +1,18 @@
+<body class="container-fluid">
+    <form #formLogin class="login-form">
+        
+        <div class="col">
+            <div class="row">
+                <label class="form-label" style="font-size: 20px; color: #fff ;"><b>Usuario</b></label>
+                <input [(ngModel)]="username" type="text" class="form-control" id="username" name="username" required>
+            </div><br>
+            <div class="row">
+                <label class="form-label" style="font-size: 20px; color: #fff "><b>Senha</b></label>
+                <input [(ngModel)]= "password" type="password" class="form-control" id="password" name="password" required>
+            </div><br>
+            <div class="row">
+                <button type="submit" class="btn btn-secondary" (click)="login()">Entrar</button>
+            </div>
+        </div>
+    </form>
+</body>

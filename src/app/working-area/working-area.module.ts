@@ -8,10 +8,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalStackEditComponent } from './modal-stack-edit/modal-stack-edit.component';
+import { ModalTaskComponent } from './modal-task/modal-task.component';
 
 @NgModule({
   declarations: [
-    BoardPanelComponent
+    BoardPanelComponent,
+    ModalStackEditComponent,
+    ModalTaskComponent
   ],
   imports: [
     CommonModule,

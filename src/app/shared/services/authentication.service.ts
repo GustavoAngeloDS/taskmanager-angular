@@ -15,17 +15,17 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) { }
 
   authenticate(username: string, password: string): Observable<User> {
-    const headers = new HttpHeaders({ Authorization: "Basic "+btoa(username+":"+password), "Access-Control-Allow-Origin": "localhost:4200"})
+    const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password) })
     return this.httpClient.get<User>(this.backendUrl, { headers }).pipe(
       map(
         userData => {
+          let authString = "Basic " + btoa(username + ":" + password);
           sessionStorage.setItem('username', username);
-          let authString = "Basic "+btoa(username+":"+password);
           sessionStorage.setItem("basicauth", authString);
           return userData;
         }
       )
-    ); 
+    );
   }
 
   isUserLoggedIn() {

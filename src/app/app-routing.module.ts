@@ -2,17 +2,30 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppModule } from './app.module';
 import { BoardListComponent } from './board-management/board-list/board-list.component';
+import { AuthGuard } from './shared/auth/auth.guard';
+import { LoginComponent } from './user-onboarding/login/login.component';
 import { BoardPanelComponent } from './working-area/board-panel/board-panel.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full"
+  },
+  {
+    path: "login",
+    component: LoginComponent
+  },
+  {
+    canActivate: [AuthGuard],
+    path: "boards",
     component: BoardListComponent
   },
   {
-    path: 'board-panel/:id',
+    canActivate: [AuthGuard],
+    path: "board-panel/:id",
     component: BoardPanelComponent
-  }
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <h4> {{task.title}} </h4>
+</div>
+<div class="modal-body">
+    <div *ngIf="screenAction == Action.INSERTING">
+        <div class="row">
+            <div class="col-2">
+                <p>Id:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <p>Título:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="newTask.title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <p>Descrição:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="newTask.description">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="screenAction == Action.EDITING">
+        <div class="row">
+            <div class="col-2">
+                <p>Id:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" disabled value="{{task.id}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <p>Título:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="task.title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <p>Descrição:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="task.description">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="salvarTask()">Salvar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+</div>
