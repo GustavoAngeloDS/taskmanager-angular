@@ -1,13 +1,12 @@
 <body class="container-fluid">
 
     <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
-
     <div cdkDropListGroup class="col">
-        <div class="example-container" *ngFor="let stack of board.stackList">
+        <div class="example-container" *ngFor="let stack of stackList ">
             <h2>{{stack.name}}</h2>
 
             <div cdkDropList [cdkDropListData]="findTasksByStack(stack.id!)" class="example-list"
-                (cdkDropListDropped)="drop($event)">
+                (cdkDropListDropped)="updateTaskPositionAndSync($event, stack.id!)">
                 <div class="example-box" *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag>{{task.title}}
                 </div>
             </div>

@@ -29,3 +29,4 @@ export class ModalBoardInsertComponent implements OnInit {
     })
   }
 }
+  
