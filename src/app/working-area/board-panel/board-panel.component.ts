@@ -25,8 +25,11 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   newStackName?: string;
 
+  draggedTask!: Task;
+
   constructor(private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
     super();
+    this.draggedTask = new Task();
   }
 
   ngOnInit(): void {
@@ -96,8 +99,13 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
         event.currentIndex
       );
 
-      this.saveNewTaskStack(this.board.id!, event.container.data[0].id!, newStackId!);
+      this.saveNewTaskStack(this.board.id!, this.draggedTask.id!, newStackId!);  
+      this.clearDraggedTask(); 
     }
+  }
+
+  clearDraggedTask() {
+    this.draggedTask = new Task();
   }
 
   openModalStackUpdate(stack: Stack): void {
@@ -107,11 +115,18 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
   }
 
-  openModalViewTask(task?: Task): void {
+  openModalViewTask(task?: Task, stackId?: string): void {
     const modal = this.modalService.open(ModalTaskComponent);
-    modal.componentInstance.task = task;
     modal.componentInstance.boardId = this.board.id;
-    modal.componentInstance.screenAction = Action.EDITING;
+
+    if (task != null && task != undefined) {
+      modal.componentInstance.task = task;
+      modal.componentInstance.screenAction = Action.EDITING;
+    } else {
+      modal.componentInstance.screenAction = Action.INSERTING;
+      modal.componentInstance.stackId = stackId;
+    }
+
     modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
   }
 }

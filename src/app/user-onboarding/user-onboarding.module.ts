@@ -4,12 +4,14 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    UserDetailsComponent
   ],
   imports: [
     CommonModule,

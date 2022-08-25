@@ -1,1 +1,24 @@
-<router-outlet></router-outlet>
+<div class="conteiner-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand nav-link" href="#" routerLink="/boards">
+            <i class="fa fa-user-edit"> </i> {{ title }} </a>
+        <div *ngIf="isUserLoggedIn()" class="navbar-collapse collapsed justify-content-between" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul *ngIf="isUserLoggedIn()" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <h2 style="color: white" role="button"><a href="/userdetails">{{ username }}</a></h2>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" (click)="logout()">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <p class="navbar-text mb-0 text-white">
+                        <!-- <i class="fa fa-user"></i> {{ usuarioLogado.nome }} -->
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

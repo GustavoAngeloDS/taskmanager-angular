@@ -1,26 +1,23 @@
-<body>
-    <div class="container-fluid">
-        <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
-        <div class="row justify-content-center gy-5">
-            <p class="gy-2"></p>
-            <div class="card" style="width: 16rem; background-color: rgb(206, 223, 238);"
-                *ngFor="let board of boardList">
-                <img src="../../../assets/BoardDefaultImage.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h1>{{board.name}}</h1>
-                    <p>{{board.description}}</p>
-                    <button type="button" class="btn btn-secondary" [routerLink]="['/board-panel/', board.id]">Abrir
-                        quadro</button>
-                    <button type="button" class="btn btn-light" (click)="openModalBoardEdit(board)">Editar</button>
-                    <button type="button" class="btn btn-danger" (click)="openModalBoardDelete(board)">Excluir</button>
-                </div>
+<body class="container-fluid">
+    <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
+    <div class="row justify-content-center">
+        <div class="card" style="margin: 10px; width: 16rem; background-color: rgb(206, 223, 238);" *ngFor="let board of boardList">
+            <img src="../../../assets/BoardDefaultImage.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h1>{{board.name}}</h1>
+                <p>{{board.description}}</p>
+                <button type="button" class="btn btn-secondary" [routerLink]="['/board-panel/', board.id]">Abrir
+                    quadro</button>
+                <button type="button" class="btn btn-light" (click)="openModalBoardEdit(board)">Editar</button>
+                <button type="button" class="btn btn-danger" (click)="openModalBoardDelete(board)">Excluir</button>
             </div>
-            <div class="no-boards-registered" *ngIf="isLoadCompleted && boardList.length==0">
-                <h1 class="text-center"><b>Oops!</b></h1>
-                <h2 class="text-center">Parece que você não tem nenhum quadro cadastrado</h2>
-                <h2 class="text-center">Crie um agora mesmo clicando no botão abaixo!</h2>
-                <h2 class="text-center"><button type="button" class="btn btn-light" (click)="openModalBoardInsert()">Cadastrar novo quadro</button></h2>
-            </div>
+        </div>
+        <div class="no-boards-registered" *ngIf="isLoadCompleted && boardList.length==0">
+            <h1 class="text-center"><b>Oops!</b></h1>
+            <h2 class="text-center">Parece que você não tem nenhum quadro cadastrado</h2>
+            <h2 class="text-center">Crie um agora mesmo clicando no botão abaixo!</h2>
+            <h2 class="text-center"><button type="button" class="btn btn-light"
+                    (click)="openModalBoardInsert()">Cadastrar novo quadro</button></h2>
         </div>
     </div>
 </body>

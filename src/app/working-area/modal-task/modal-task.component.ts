@@ -17,6 +17,7 @@ export class ModalTaskComponent implements OnInit {
 
   @Input() boardId!: string;
   @Input() task!: Task;
+  @Input() stackId!: string;
 
   newTask!: Task;
 
@@ -38,7 +39,7 @@ export class ModalTaskComponent implements OnInit {
         error: (error) => this.notificationService.showError(error.message)
       });
     } else {
-      this.workingAreaService.saveNewTask(this.boardId, this.newTask).subscribe({
+      this.workingAreaService.saveNewTask(this.boardId, this.stackId, this.newTask).subscribe({
         complete: () => {
           this.notificationService.showSuccess("Task criada com sucesso");
           this.activeModal.close();

@@ -39,8 +39,8 @@ export class WorkingAreaService {
     return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/change-stack/" + newStackId, {});
   }
 
-  saveNewTask(boardId: string, task: Task): Observable<Task> {
-    return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks", {
+  saveNewTask(boardId: string, stackId: string, task: Task): Observable<Task> {
+    return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/stacks/" + stackId + "/tasks", {
       title: task.title,
       description: task.description
     });

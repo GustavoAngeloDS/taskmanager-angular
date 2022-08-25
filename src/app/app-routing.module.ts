@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { BoardListComponent } from './board-management/board-list/board-list.component';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { LoginComponent } from './user-onboarding/login/login.component';
+import { UserDetailsComponent } from './user-onboarding/user-details/user-details.component';
 import { BoardPanelComponent } from './working-area/board-panel/board-panel.component';
 
 const routes: Routes = [
@@ -26,6 +27,11 @@ const routes: Routes = [
     path: "board-panel/:id",
     component: BoardPanelComponent
   },
+  {
+    canActivate: [AuthGuard],
+    path: "userdetails",
+    component: UserDetailsComponent
+  }
 ];
 
 @NgModule({

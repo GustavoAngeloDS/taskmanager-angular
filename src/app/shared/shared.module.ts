@@ -5,9 +5,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicHttpInterceptorService } from './services/basic-http-interceptor.service';
 
 
-
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
     CommonModule
   ],
