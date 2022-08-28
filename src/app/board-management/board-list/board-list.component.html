@@ -1,7 +1,14 @@
 <body class="container-fluid">
     <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
     <div class="row justify-content-center">
-        <div class="card" style="margin: 10px; width: 16rem; background-color: rgb(206, 223, 238);" *ngFor="let board of boardList">
+        <select class="form-select" [(ngModel)]="boardListSelectorFilter" aria-label="Default select example"
+            style="background-color: azure;">
+            <option value="ALL" selected>Todos</option>
+            <option value="MINE">Meus quadros</option>
+            <option value="MEMBER">Quadros que sou membro</option>
+        </select>
+        <div class="card" style="margin: 10px; width: 16rem; background-color: rgb(206, 223, 238);"
+            *ngFor="let board of filterBoardList()">
             <img src="../../../assets/BoardDefaultImage.png" class="card-img-top" alt="...">
             <div class="card-body">
                 <h1>{{board.name}}</h1>

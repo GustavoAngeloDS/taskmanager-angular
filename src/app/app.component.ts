@@ -11,13 +11,12 @@ import { NotificationService } from './shared/services/notification.service';
 })
 export class AppComponent implements OnInit {
   title = 'TaskManager';
-  username?: string;
 
   constructor(private authenticationService: AuthenticationService) {
 
   }
   ngOnInit(): void {
-    this.username = this.authenticationService.getUsername();
+
   }
 
   isUserLoggedIn(): boolean {

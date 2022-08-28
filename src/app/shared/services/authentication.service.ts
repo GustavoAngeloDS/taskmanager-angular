@@ -5,13 +5,12 @@ import { Route, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  loggedUser?: User;
 
   private backendUrl: string = environment.apiUrl + "/users/validateLogin";
 
@@ -19,17 +18,18 @@ export class AuthenticationService {
 
   authenticate(username: string, password: string): Observable<User> {
     const headers = new HttpHeaders({ Authorization: "Basic " + btoa(username + ":" + password) })
+
     return this.httpClient.get<User>(this.backendUrl, { headers }).pipe(
       map(
         userData => {
           let authString = "Basic " + btoa(username + ":" + password);
           sessionStorage.setItem('username', username);
           sessionStorage.setItem("basicauth", authString);
-
+          sessionStorage.setItem("user", JSON.stringify(userData));
           return userData;
         }
       )
-    );
+    )
   }
 
   isUserLoggedIn() {
@@ -38,15 +38,7 @@ export class AuthenticationService {
   }
 
   logOut() {
-    sessionStorage.removeItem("username");
-    sessionStorage.removeItem("basicauth");
-
+    sessionStorage.clear();
     this.router.navigate(["/login"]);
-  }
-
-  getUsername(): string {
-    if (this.isUserLoggedIn())
-      return sessionStorage.getItem("username")!.toUpperCase()
-    else return "";
   }
 }

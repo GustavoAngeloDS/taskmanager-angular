@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { SessionService } from 'src/app/shared/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   username?: string;
   password?: string;
 
-  constructor(private notificationService: NotificationService, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private sessionService: SessionService, private notificationService: NotificationService, private authenticationService: AuthenticationService, private router: Router) {
     if (this.authenticationService.isUserLoggedIn()) {
       this.router.navigate(["/boards"])
     }
@@ -27,9 +28,9 @@ export class LoginComponent implements OnInit {
   login() {
     this.authenticationService.authenticate(this.username!, this.password!).subscribe((user) => {
       if (user != null && user != undefined) {
+        this.sessionService.loggedUser = user;
         this.router.navigate(["/boards"]);
       }
-    }, (error) => this.notificationService.showError("Não foi possível logar com as credenciais informadas")
-    );
+    }, (error) => this.notificationService.showError("Não foi possível logar com as credenciais informadas"));
   }
 }

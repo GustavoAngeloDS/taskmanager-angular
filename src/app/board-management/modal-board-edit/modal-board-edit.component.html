@@ -13,6 +13,14 @@
         </div>
         <div class="row">
             <div class="col-2">
+                <p>Dono:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" disabled [(ngModel)]="board.owner!.username">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
                 <p>Nome:</p>
             </div>
             <div class="col">
@@ -25,6 +33,16 @@
             </div>
             <div class="col">
                 <input type="text" class="form-control" [(ngModel)]="board.description">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 gy-3">
+                <p>Membros</p>
+            </div>
+            <div class="col gy-3">
+                <ul class="list-group" *ngFor="let member of board.memberList">
+                    <li class="list-group-item">{{member.username}}</li>
+                </ul>
             </div>
         </div>
     </div>

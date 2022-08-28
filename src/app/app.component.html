@@ -7,15 +7,7 @@
             </ul>
             <ul *ngIf="isUserLoggedIn()" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <h2 style="color: white" role="button"><a href="/userdetails">{{ username }}</a></h2>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#" (click)="logout()">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <p class="navbar-text mb-0 text-white">
-                        <!-- <i class="fa fa-user"></i> {{ usuarioLogado.nome }} -->
-                    </p>
                 </li>
             </ul>
         </div>
