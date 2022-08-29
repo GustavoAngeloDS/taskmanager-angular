@@ -13,4 +13,10 @@ export class SessionService {
       this.loggedUser = JSON.parse(sessionStorage.getItem("user")!);
     }
   }
+
+  updateLoggedUser(user: User) {
+    sessionStorage.removeItem("user");
+    sessionStorage.setItem("user", JSON.stringify(user));
+    this.loggedUser = user;
+  }
 }

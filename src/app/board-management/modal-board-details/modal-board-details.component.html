@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4> Editar Board </h4>
+    <h4> Detalhes do Board </h4>
 </div>
 <div class="modal-body">
     <div>
@@ -8,7 +8,7 @@
                 <p>Id:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" disabled value="{{board.id}}">
+                <label>{{board.id}}</label>
             </div>
         </div>
         <div class="row">
@@ -16,7 +16,7 @@
                 <p>Dono:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" disabled [(ngModel)]="board.owner!.username">
+                <label>{{board.owner!.username}}</label>
             </div>
         </div>
         <div class="row">
@@ -24,7 +24,7 @@
                 <p>Nome:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="board.name">
+                <label>{{board.name}}</label>
             </div>
         </div>
         <div class="row">
@@ -32,22 +32,21 @@
                 <p>Descrição:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="board.description">
+                <label>{{board.description}}</label>
             </div>
         </div>
-        <div class="row">
-            <div class="col-2 gy-3">
-                <p>Membros</p>
+        <div class="row text-center">
+            <div class="gy-3">
+                <h2>Membros</h2>
             </div>
-            <div class="col gy-3">
+            <div class="col">
                 <ul class="list-group" *ngFor="let member of board.memberList">
-                    <li class="list-group-item">{{member.username}}</li>
+                    <li class="list-group-item">{{member.username}} - {{member.email}}</li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="updateBoard()">Salvar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Fechar</button>
 </div>

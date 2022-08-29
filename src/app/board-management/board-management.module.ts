@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardListComponent } from './board-list/board-list.component';
-import { ModalBoardEditComponent } from './modal-board-edit/modal-board-edit.component';
+import { ModalBoardDetailsComponent } from './modal-board-details/modal-board-details.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { ModalBoardInsertComponent } from './modal-board-insert/modal-board-inse
 @NgModule({
   declarations: [
     BoardListComponent,
-    ModalBoardEditComponent,
+    ModalBoardDetailsComponent,
     ModalBoardDeleteComponent,
     ModalBoardInsertComponent
   ],

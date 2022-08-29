@@ -5,21 +5,21 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { BoardManagementService } from '../services/board-management.service';
 
 @Component({
-  selector: 'app-modal-board-edit',
-  templateUrl: './modal-board-edit.component.html',
-  styleUrls: ['./modal-board-edit.component.css']
+  selector: 'app-modal-board-details',
+  templateUrl: './modal-board-details.component.html',
+  styleUrls: ['./modal-board-details.component.css']
 })
-export class ModalBoardEditComponent implements OnInit {
+export class ModalBoardDetailsComponent implements OnInit {
 
   @Input() board!: Board;
 
-  constructor(public activeModal: NgbActiveModal, public boardManagementService: BoardManagementService, public notificationService: NotificationService) { }
+  constructor(public activeModal: NgbActiveModal, public notificationService: NotificationService) { }
 
   ngOnInit(): void {
 
   }
 
-  updateBoard(): void {
+  /*updateBoard(): void {
     this.boardManagementService.updateBoard(this.board).subscribe({
       complete: () => {
         this.notificationService.showSuccess("Quadro atualizado");
@@ -27,5 +27,5 @@ export class ModalBoardEditComponent implements OnInit {
       },
       error: (error) => this.notificationService.showError(error.message)
     });
-  }
+  }*/
 }

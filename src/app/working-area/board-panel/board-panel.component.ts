@@ -28,7 +28,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   draggedTask!: Task;
 
   constructor(private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
-    super();
+    super(false, Action.EDITING);
     this.draggedTask = new Task();
   }
 
@@ -99,8 +99,8 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
         event.currentIndex
       );
 
-      this.saveNewTaskStack(this.board.id!, this.draggedTask.id!, newStackId!);  
-      this.clearDraggedTask(); 
+      this.saveNewTaskStack(this.board.id!, this.draggedTask.id!, newStackId!);
+      this.clearDraggedTask();
     }
   }
 

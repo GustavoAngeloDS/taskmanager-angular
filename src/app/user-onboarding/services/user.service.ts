@@ -12,7 +12,12 @@ export class UserService {
 
   private backendUrl: string = environment.apiUrl + "/users/";
 
-  constructor(private authenticationService: AuthenticationService, private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put(this.backendUrl+user.id, {
+      nickName: user.nickName,
+      phoneNumber: user.phoneNumber
+    });
+  }
 }

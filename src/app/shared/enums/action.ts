@@ -1,4 +1,5 @@
 export enum Action {
     INSERTING,
-    EDITING
+    EDITING,
+    VIEWING
 }

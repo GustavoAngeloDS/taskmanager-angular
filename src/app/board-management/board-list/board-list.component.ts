@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Action } from 'src/app/shared/enums/action';
 import { Board } from 'src/app/shared/models/board.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { SessionService } from 'src/app/shared/services/session.service';
 import { ModalBoardDeleteComponent } from '../modal-board-delete/modal-board-delete.component';
-import { ModalBoardEditComponent } from '../modal-board-edit/modal-board-edit.component';
+import { ModalBoardDetailsComponent } from '../modal-board-details/modal-board-details.component';
 import { ModalBoardInsertComponent } from '../modal-board-insert/modal-board-insert.component';
 import { BoardManagementService } from '../services/board-management.service';
 
@@ -20,8 +21,8 @@ export class BoardListComponent extends PageBehavior implements OnInit {
 
   boardListSelectorFilter: string = "ALL";
 
-  constructor(private sessionService: SessionService, private modalService: NgbModal, private boardManagementService: BoardManagementService, private notificationService: NotificationService) {
-    super();
+  constructor(public sessionService: SessionService, private modalService: NgbModal, private boardManagementService: BoardManagementService, private notificationService: NotificationService) {
+    super(false, Action.VIEWING);
   }
 
   ngOnInit(): void {
@@ -38,10 +39,9 @@ export class BoardListComponent extends PageBehavior implements OnInit {
       () => this.isLoadCompleted = true);
   }
 
-  openModalBoardEdit(board: Board): void {
-    const modal = this.modalService.open(ModalBoardEditComponent);
+  openModalBoardDetails(board: Board): void {
+    const modal = this.modalService.open(ModalBoardDetailsComponent);
     modal.componentInstance.board = board;
-    modal.closed.subscribe({ complete: () => this.loadBoards() });
   }
 
   openModalBoardDelete(board: Board): void {
