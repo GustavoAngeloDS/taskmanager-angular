@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <h3 class="modal-title"><b>Novo usuário</b></h3>
+</div>
+<div class="modal-body">
+    <div class="form-group row">
+        <label class="col-sm-6 col-form-label">
+            Usuário
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="newUser.username" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-6 col-form-label">
+            Como quer ser chamado?
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="newUser.nickName" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-6 col-form-label">
+            Número de Telefone
+        </label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="(xx)x xxxx-xxxx" [(ngModel)]="newUser.phoneNumber"
+                required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-6 col-form-label">
+            Endereço de e-mail
+        </label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" placeholder="seu.email@email.com" [(ngModel)]="newUser.email"
+                required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-6 col-form-label">
+            Senha
+        </label>
+        <div class="col-sm-6">
+            <input type="password" class="form-control" [(ngModel)]="newUser.password" required>
+        </div>
+    </div>
+    <br>
+    <p></p>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" required>
+        <label class="form-check-label">
+            Confirmo que aceito receber emails da plataforma <b>TaskManager</b>
+        </label>
+    </div>
+    <br>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="saveNewUser()">Salvar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 <body class="container-fluid">
     <form #formLogin class="login-form">
-        
+
         <div class="col">
             <div class="row">
                 <label class="form-label" style="font-size: 20px; color: #fff ;"><b>Usuario</b></label>
@@ -8,10 +8,17 @@
             </div><br>
             <div class="row">
                 <label class="form-label" style="font-size: 20px; color: #fff "><b>Senha</b></label>
-                <input [(ngModel)]= "password" type="password" class="form-control" id="password" name="password" required>
+                <input [(ngModel)]="password" type="password" class="form-control" id="password" name="password"
+                    required>
             </div><br>
             <div class="row">
                 <button type="submit" class="btn btn-secondary" (click)="login()">Entrar</button>
+            </div>
+            <p></p>
+            <div class="row text-center" (click)="openModalNewUser()" style="cursor: pointer;">
+                <b>
+                    <h2>Criar uma nova conta</h2>
+                </b>
             </div>
         </div>
     </form>

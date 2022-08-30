@@ -4,5 +4,6 @@ export class User {
         public email?: string,
         public username?: string,
         public nickName?: string,
-        public phoneNumber?: string) { }
+        public phoneNumber?: string,
+        public password?: string) { }
 }

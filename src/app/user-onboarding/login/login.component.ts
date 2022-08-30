@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { SessionService } from 'src/app/shared/services/session.service';
+import { ModalCreateUserComponent } from '../modal-create-user/modal-create-user.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   username?: string;
   password?: string;
 
-  constructor(private sessionService: SessionService, private notificationService: NotificationService, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private modalService: NgbModal, private sessionService: SessionService, private notificationService: NotificationService, private authenticationService: AuthenticationService, private router: Router) {
     if (this.authenticationService.isUserLoggedIn()) {
       this.router.navigate(["/boards"])
     }
@@ -32,5 +34,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/boards"]);
       }
     }, (error) => this.notificationService.showError("Não foi possível logar com as credenciais informadas"));
+  }
+
+  openModalNewUser(): void {
+    this.modalService.open(ModalCreateUserComponent);
   }
 }

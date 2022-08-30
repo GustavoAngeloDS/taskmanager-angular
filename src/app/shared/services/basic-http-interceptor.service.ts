@@ -11,7 +11,7 @@ export class BasicHttpInterceptorService implements HttpInterceptor {
   constructor(private notificationService: NotificationService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!req.url.endsWith("/validateLogin")) {
+    if (!req.url.endsWith("/validateLogin") && !(req.method === "POST" && req.url.endsWith("/users"))) {
       if (sessionStorage.getItem("username") && sessionStorage.getItem("basicauth")) {
         req = req.clone({
           headers: req.headers.append("Authorization", sessionStorage.getItem("basicauth")!)

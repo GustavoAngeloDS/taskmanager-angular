@@ -10,18 +10,28 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
-  private backendUrl: string = environment.apiUrl + "/users/";
+  private backendUrl: string = environment.apiUrl + "/users";
 
   constructor(private httpClient: HttpClient) { }
 
   updateUser(user: User): Observable<User> {
-    return this.httpClient.put(this.backendUrl+user.id, {
+    return this.httpClient.put(this.backendUrl + "/" + user.id, {
       nickName: user.nickName,
       phoneNumber: user.phoneNumber
     });
   }
 
   findUser(userId: string): Observable<User> {
-    return this.httpClient.get(this.backendUrl+userId);
+    return this.httpClient.get(this.backendUrl + userId);
+  }
+
+  saveUser(user: User): Observable<User> {
+    return this.httpClient.post(this.backendUrl, {
+      email: user.email,
+      username: user.username,
+      nickName: user.nickName,
+      phoneNumber: user.phoneNumber,
+      password: user.password
+    });
   }
 }
