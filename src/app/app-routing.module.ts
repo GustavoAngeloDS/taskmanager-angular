@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppModule } from './app.module';
+import { BoardEditComponent } from './board-management/board-edit/board-edit.component';
 import { BoardListComponent } from './board-management/board-list/board-list.component';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { LoginComponent } from './user-onboarding/login/login.component';
@@ -31,6 +32,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     path: "userdetails",
     component: UserDetailsComponent
+  },
+  {
+    canActivate: [AuthGuard],
+    path: "board-edit/:id",
+    component: BoardEditComponent
   }
 ];
 

@@ -43,6 +43,9 @@
                 <ul class="list-group" *ngFor="let member of board.memberList">
                     <li class="list-group-item">{{member.username}} - {{member.email}}</li>
                 </ul>
+                <p *ngIf="!board.memberList || board.memberList!.length == 0">
+                    Não existem membros vinculados ao quadro
+                </p>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <div class="modal-header">
-    <h4> {{task.title}} </h4>
+    <h4 *ngIf="screenAction == Action.INSERTING"> Nova Task </h4>
+    <h4 *ngIf="screenAction == Action.EDITING"> {{task.title}} </h4>
 </div>
 <div class="modal-body">
     <div *ngIf="screenAction == Action.INSERTING">

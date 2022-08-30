@@ -20,4 +20,8 @@ export class UserService {
       phoneNumber: user.phoneNumber
     });
   }
+
+  findUser(userId: string): Observable<User> {
+    return this.httpClient.get(this.backendUrl+userId);
+  }
 }

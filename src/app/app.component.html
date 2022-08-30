@@ -1,34 +1,39 @@
 <div>
-    <nav class="navbar navbar-dark bg-dark fixed-top" *ngIf="isUserLoggedIn()">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">TaskManager</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/boards"><i class="bi bi-list-stars"></i> Lista de quadros</a>
-                        </li>
-                        <hr>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/userdetails"><i class="bi bi-person-circle"></i> Editar dados cadastrais</a>
-                        </li>
-                        <hr>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" (click)="logout()"><i class="bi bi-door-open-fill"></i> Logout</a>
-                        </li>
-                    </ul>
+    <div *ngIf="isUserLoggedIn()">
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">TaskManager</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                    aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/boards"><i class="bi bi-list-stars"></i>
+                                    Lista de quadros</a>
+                            </li>
+                            <hr>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/userdetails"><i class="bi bi-person-circle"></i> Editar dados
+                                    cadastrais</a>
+                            </li>
+                            <hr>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" (click)="logout()"><i class="bi bi-door-open-fill"></i>
+                                    Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav><br><br><p></p>
+    </div>
     <router-outlet></router-outlet>
 </div>

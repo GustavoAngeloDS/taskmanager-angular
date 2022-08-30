@@ -1,3 +1,4 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,11 +15,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent extends PageBehavior implements OnInit {
-  @ViewChild('formUserDetails') formUserDetails!: NgForm;
   fieldSetDisabled: boolean = true;
-
   Action = Action;
-
   user!: User;
 
   constructor(private router: Router, private sessionService: SessionService, private userService: UserService, private notificationService: NotificationService) {
@@ -34,7 +32,7 @@ export class UserDetailsComponent extends PageBehavior implements OnInit {
     this.userService.updateUser(this.user).subscribe(
       () => { },
       (error) => this.notificationService.showError("Falha ao salvar dados"),
-      () => { this.viewingMode(), this.sessionService.updateLoggedUser(this.user) },
+      () => { this.refreshPage(), this.sessionService.updateLoggedUser(this.user) },
     );
   }
 
@@ -43,9 +41,7 @@ export class UserDetailsComponent extends PageBehavior implements OnInit {
     this.currentAction = Action.EDITING
   }
 
-  viewingMode() {
-    this.fieldSetDisabled = true;
-    this.currentAction = Action.VIEWING;
-    this.router.navigate(["/userdetails"]);
+  refreshPage() {
+    window.location.reload();
   }
 }
