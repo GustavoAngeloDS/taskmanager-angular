@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Action } from 'src/app/shared/enums/action';
@@ -7,6 +8,7 @@ import { Board } from 'src/app/shared/models/board.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model'
+import { DialogTaskComponent } from '../dialog-task/dialog-task.component';
 import { ModalStackEditComponent } from '../modal-stack-edit/modal-stack-edit.component';
 import { ModalTaskComponent } from '../modal-task/modal-task.component';
 import { WorkingAreaService } from '../services/working-area.service';
@@ -27,7 +29,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   draggedTask!: Task;
 
-  constructor(private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
+  constructor(private matDialog: MatDialog, private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
     super(false, Action.EDITING);
     this.draggedTask = new Task();
   }
@@ -115,18 +117,18 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
   }
 
-  openModalViewTask(task?: Task, stackId?: string): void {
+  openModalNewTask(stackId?: string): void {
     const modal = this.modalService.open(ModalTaskComponent);
     modal.componentInstance.boardId = this.board.id;
 
-    if (task != null && task != undefined) {
-      modal.componentInstance.task = task;
-      modal.componentInstance.screenAction = Action.EDITING;
-    } else {
-      modal.componentInstance.screenAction = Action.INSERTING;
-      modal.componentInstance.stackId = stackId;
-    }
+    modal.componentInstance.screenAction = Action.INSERTING;
+    modal.componentInstance.stackId = stackId;
 
     modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
+  }
+
+  openTaskDialog(task: Task): void {
+    const dialog = this.matDialog.open(DialogTaskComponent, {width: "800px"});
+    dialog.componentInstance.task = task;
   }
 }

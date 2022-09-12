@@ -9,6 +9,7 @@ import { WorkingAreaModule } from './working-area/working-area.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule  } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     UserOnboardingModule,
     BrowserAnimationsModule,
     SharedModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

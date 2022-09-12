@@ -1,6 +1,5 @@
 <div class="modal-header">
     <h4 *ngIf="screenAction == Action.INSERTING"> Nova Task </h4>
-    <h4 *ngIf="screenAction == Action.EDITING"> {{task.title}} </h4>
 </div>
 <div class="modal-body">
     <div *ngIf="screenAction == Action.INSERTING">
@@ -26,32 +25,6 @@
             </div>
             <div class="col">
                 <input type="text" class="form-control" [(ngModel)]="newTask.description">
-            </div>
-        </div>
-    </div>
-    <div *ngIf="screenAction == Action.EDITING">
-        <div class="row">
-            <div class="col-2">
-                <p>Id:</p>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" disabled value="{{task.id}}">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <p>Título:</p>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="task.title">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <p>Descrição:</p>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="task.description">
             </div>
         </div>
     </div>

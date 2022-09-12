@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalStackEditComponent } from './modal-stack-edit/modal-stack-edit.component';
 import { ModalTaskComponent } from './modal-task/modal-task.component';
+import { DialogTaskComponent } from './dialog-task/dialog-task.component';
 
 @NgModule({
   declarations: [
     BoardPanelComponent,
     ModalStackEditComponent,
-    ModalTaskComponent
+    ModalTaskComponent,
+    DialogTaskComponent
   ],
   imports: [
     CommonModule,
