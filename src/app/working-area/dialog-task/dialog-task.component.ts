@@ -60,7 +60,8 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
         this.currentAction = Action.VIEWING;
         this.workingAreaService.findTaskById(this.boardId, this.task.id!).subscribe({
           next: (task) => {
-            this.task = task
+            this.task = task;
+            this.updatePercentage();
           }
         });
         this.newInternalTask = new InternalTask();
