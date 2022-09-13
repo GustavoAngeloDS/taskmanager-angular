@@ -1,32 +1,60 @@
 <div class="container">
     <div class="row">
-        <div class="col-9" style="background-color: aqua;">
+        <div class="col-9">
             <div>
                 <div class="row">
-                    <h1>{{ task.title }}</h1>
+                    <input type="text" class="form-control" [(ngModel)]="task.title" (blur)="updateTask()">
                 </div>
+                <br>
                 <div class="row">
-                    <textarea class="form-control" rows="5" aria-label="Description"></textarea>
+                    <textarea class="form-control" rows="5" [(ngModel)]="task.description"
+                        (blur)="updateTask()"></textarea>
                 </div>
             </div>
             <hr>
             <div class="row">
-                <div class="col-10">
-                    <h3><b>Checklist name</b></h3>
+                <div class="col-9">
+                    <b>Checklist</b>
+                    <button type="button" class="btn btn-light" (click)="currentAction=Action.INSERTING">
+                        <i class="bi bi-plus-square"></i> <b></b>
+                    </button>
                 </div>
                 <div class="col">
-                    <b>0%</b>
+                    <b>{{percentComplete}}% concl.</b>
                 </div>
             </div>
-            <!-- <div>
-                <input class="form-check-input" type="checkbox" value="" text><label class="form-check-label">
-                    Texto 1
-                </label>
-            </div>-->
-
+            <div style="overflow-y:scroll;overflow-x:hidden; height:300px;">
+                <div class="row" *ngIf="currentAction===Action.INSERTING">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"> <input class="form-check-input"
+                                type="checkbox" disabled text>
+                        </span>
+                        <input type="text" class="form-control" [(ngModel)]="newInternalTask!.description"
+                            (blur)="saveNewInternalTask()">
+                    </div>
+                </div>
+                <div *ngFor="let internalTask of task.internalTasks">
+                    <div class="row">
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"> <input class="form-check-input"
+                                    type="checkbox" [(ngModel)]="internalTask.checked" text
+                                    (ngModelChange)="updateInternalTasks(internalTask)">
+                            </span>
+                            <input type="text" class="form-control" [(ngModel)]="internalTask.description"
+                                (blur)="updateInternalTasks(internalTask)">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col" style="background-color: beige;">
-            CBA
+        <div class="col">
+            <div class="row">
+                <div class="btn-group-vertical" aria-label="Vertical button group">
+                    <button type="button" class="btn btn-light btn-outline-dark">Membros</button>
+                    <button type="button" class="btn btn-light btn-outline-dark">Conf. notificações</button>
+                    <button type="button" class="btn btn-light btn-outline-dark">Conf. vencimento</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

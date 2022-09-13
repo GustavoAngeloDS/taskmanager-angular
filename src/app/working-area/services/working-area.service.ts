@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from 'src/app/shared/models/board.model';
+import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { environment } from 'src/environments/environment';
@@ -51,5 +52,23 @@ export class WorkingAreaService {
       title: task.title,
       description: task.description
     })
+  }
+
+  updateInternalTask(boardId: string, taskId: string, internalTask: InternalTask): Observable<Task> {
+    return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/internalTask/" + internalTask.id, {
+      checked: internalTask.checked,
+      description: internalTask.description
+    });
+  }
+
+  saveNewInternalTask(boardId: string, taskId: string, internalTask: InternalTask): Observable<Task> {
+    return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/includeInternalTask", {
+      checked: false,
+      description: internalTask.description
+    });
+  }
+
+  findTaskById(boardId: string, taskId: string): Observable<Task> {
+    return this.httpClient.get<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId);
   }
 }

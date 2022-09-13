@@ -1,3 +1,4 @@
+import { InternalTask } from "./internal-task.model";
 import { User } from "./user.model";
 
 export class Task {
@@ -5,5 +6,6 @@ export class Task {
         public id?: string, 
         public title?: string, 
         public description?: string,
-        public memberList?: Array<User>) {}
+        public memberList?: Array<User>,
+        public internalTasks?: Array<InternalTask>) {}
 }
