@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Action } from 'src/app/shared/enums/action';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
@@ -68,5 +67,9 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
       },
       error: (error) => this.notificationService.showError("Falha ao inserir nova tarefa interna:" + error.message)
     });
+  }
+
+  allowCreateNewInternalTask(): void {
+    this.currentAction = Action.INSERTING;
   }
 }
