@@ -1,0 +1,27 @@
+<div class="container" style="width: 500px;">
+    <div class="row">
+        <h1>Lista de membros da tarefa</h1>
+    </div>
+    <div class="row">
+        <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let member of task.memberList" (removed)="remove(member)">
+                    {{member.email}}
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input placeholder="Pesquisar membros do quadro" #emailInput [formControl]="inputControl"
+                    [matAutocomplete]="auto" [matChipInputFor]="chipList">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let boardMember of boardMemberList | async" [value]="boardMember">
+                    {{boardMember.email}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <button mat-flat-button color="warn">Salvar</button>
+    </div>
+</div>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Action } from 'src/app/shared/enums/action';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { DialogTaskMembersComponent } from '../dialog-task-members/dialog-task-members.component';
 import { WorkingAreaService } from '../services/working-area.service';
 
 @Component({
@@ -21,7 +23,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   newInternalTask!: InternalTask;
 
-  constructor(private notificationService: NotificationService, private workingAreaService: WorkingAreaService) {
+  constructor(private matDialog: MatDialog, private notificationService: NotificationService, private workingAreaService: WorkingAreaService) {
     super(true, Action.VIEWING);
     this.task = new Task();
   }
@@ -71,5 +73,10 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   allowCreateNewInternalTask(): void {
     this.currentAction = Action.INSERTING;
+  }
+
+  openTaskMembersDialog() {
+    const dialog = this.matDialog.open(DialogTaskMembersComponent);
+    
   }
 }
