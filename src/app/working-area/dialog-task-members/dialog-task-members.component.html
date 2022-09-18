@@ -11,8 +11,8 @@
                         <mat-icon>cancel</mat-icon>
                     </button>
                 </mat-chip>
-                <input placeholder="Pesquisar membros do quadro" #emailInput [formControl]="inputControl"
-                    [matAutocomplete]="auto" [matChipInputFor]="chipList">
+                <input placeholder="Pesquisar membros do quadro" [formControl]="inputControl" [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList">
             </mat-chip-list>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                 <mat-option *ngFor="let boardMember of boardMemberList | async" [value]="boardMember">
@@ -22,6 +22,7 @@
         </mat-form-field>
     </div>
     <div class="row">
-        <button mat-flat-button color="warn">Salvar</button>
+        <button mat-flat-button color="warn"
+            (click)="saveTaskMemberList()">Salvar</button>
     </div>
 </div>

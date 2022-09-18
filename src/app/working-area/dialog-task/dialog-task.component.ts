@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Action } from 'src/app/shared/enums/action';
+import { Board } from 'src/app/shared/models/board.model';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Task } from 'src/app/shared/models/task.model';
@@ -15,7 +16,7 @@ import { WorkingAreaService } from '../services/working-area.service';
 })
 export class DialogTaskComponent extends PageBehavior implements OnInit {
 
-  boardId!: string;
+  board!: Board;
   task!: Task;
   percentComplete: number = 0;
 
@@ -34,14 +35,14 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
   }
 
   updateTask() {
-    this.workingAreaService.updateTask(this.boardId, this.task).subscribe({
+    this.workingAreaService.updateTask(this.board.id!, this.task).subscribe({
       complete: () => { },
       error: (error) => this.notificationService.showError("Erro ao atualizar Task: " + error.message)
     })
   }
 
   updateInternalTasks(internalTask: InternalTask): void {
-    this.workingAreaService.updateInternalTask(this.boardId, this.task.id!, internalTask).subscribe({
+    this.workingAreaService.updateInternalTask(this.board.id!, this.task.id!, internalTask).subscribe({
       complete: () => this.updatePercentage(),
       error: (error) => this.notificationService.showError("Falha ao atualizar tarefa interna: " + error)
     });
@@ -56,10 +57,10 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
       this.currentAction = Action.VIEWING;
       return;
     }
-    this.workingAreaService.saveNewInternalTask(this.boardId, this.task.id!, this.newInternalTask!).subscribe({
+    this.workingAreaService.saveNewInternalTask(this.board.id!, this.task.id!, this.newInternalTask!).subscribe({
       complete: () => {
         this.currentAction = Action.VIEWING;
-        this.workingAreaService.findTaskById(this.boardId, this.task.id!).subscribe({
+        this.workingAreaService.findTaskById(this.board.id!, this.task.id!).subscribe({
           next: (task) => {
             this.task = task;
             this.updatePercentage();
@@ -77,6 +78,8 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   openTaskMembersDialog() {
     const dialog = this.matDialog.open(DialogTaskMembersComponent);
-    
+    dialog.componentInstance.board = this.board;
+    dialog.componentInstance.task = this.task;
+    dialog.componentInstance.dialogId = dialog.id;
   }
 }

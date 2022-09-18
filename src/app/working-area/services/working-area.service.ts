@@ -71,4 +71,13 @@ export class WorkingAreaService {
   findTaskById(boardId: string, taskId: string): Observable<Task> {
     return this.httpClient.get<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId);
   }
+
+  updateTaskMemberList(boardId: string, taskId: string, memberIdList: Array<string>): Observable<Task> {
+    let request: string = "";
+    memberIdList.forEach((memberId) => {
+      request += "{\"id\": \"" + memberId + "\"},";
+    })
+    request = "[" + request.substring(0, request.length - 1) + "]";
+    return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/updateMemberList", JSON.parse(request))
+  }
 }
