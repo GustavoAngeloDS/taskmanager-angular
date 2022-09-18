@@ -46,23 +46,28 @@ export class DialogTaskMembersComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.task.memberList!.push(event.option.value);
     this.emailInput.nativeElement.value = '';
-    this.inputControl.setValue(null);
   }
 
   private _filter(value: any): Array<User> {
     let toReturn: Array<User> = [];
 
-    if (typeof value === 'string') {
-      this.board.memberList!.concat(this.board.owner!).filter(member => member.email!.toLowerCase().includes(value.toLowerCase()))
+    if (typeof value === 'object' && value != null) {
+      this.board.memberList!.filter((boardMember) => boardMember.id! != (value as User).id!).forEach((boardMember) => {
+        if (this.task.memberList!.filter((taskMember) => taskMember.id! == boardMember.id!).length <= 0)
+          toReturn.push(boardMember);
+      });
+    }
+    else if (typeof value === 'string') {
+      this.board.memberList!.filter(member => member.email!.toLowerCase().includes(value.toLowerCase()))
         .forEach((boardMember) => {
           if (this.task.memberList!.filter((taskMember) => taskMember.id! == boardMember.id!).length <= 0)
-            toReturn.push(boardMember)
-        })
+            toReturn.push(boardMember);
+        });
     } else {
-      this.board.memberList!.concat(this.board.owner!).forEach((boardMember) => {
+      this.board.memberList!.forEach((boardMember) => {
         if (this.task.memberList!.filter((taskMember) => taskMember.id! == boardMember.id!).length <= 0)
-          toReturn.push(boardMember)
-      })
+          toReturn.push(boardMember);
+      });
     }
 
     return toReturn;
