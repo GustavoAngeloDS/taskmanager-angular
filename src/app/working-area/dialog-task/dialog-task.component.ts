@@ -77,7 +77,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
   }
 
   openTaskMembersDialog() {
-    const dialog = this.matDialog.open(DialogTaskMembersComponent);
+    const dialog = this.matDialog.open(DialogTaskMembersComponent, { disableClose: true });
     dialog.componentInstance.board = this.board;
     dialog.componentInstance.task = this.task;
     dialog.componentInstance.dialogId = dialog.id;
