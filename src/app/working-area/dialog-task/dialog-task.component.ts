@@ -6,6 +6,7 @@ import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { DialogTaskDuedateComponent } from '../dialog-task-duedate/dialog-task-duedate.component';
 import { DialogTaskMembersComponent } from '../dialog-task-members/dialog-task-members.component';
 import { WorkingAreaService } from '../services/working-area.service';
 
@@ -80,6 +81,21 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     const dialog = this.matDialog.open(DialogTaskMembersComponent, { disableClose: true });
     dialog.componentInstance.board = this.board;
     dialog.componentInstance.task = this.task;
+    dialog.componentInstance.dialogId = dialog.id;
+  }
+
+  openTaskDueDateDialog() {
+    const dialog = this.matDialog.open(DialogTaskDuedateComponent,
+      {
+        disableClose: true,
+        data: {
+          boardId: this.board.id,
+          taskId: this.task.id
+        }
+      });
+    //dialog.componentInstance.dueDate = this.task.dueDate!;
+    //dialog.componentInstance.boardId = this.board.id!;
+    //dialog.componentInstance.stackId = this.task.id!;
     dialog.componentInstance.dialogId = dialog.id;
   }
 }

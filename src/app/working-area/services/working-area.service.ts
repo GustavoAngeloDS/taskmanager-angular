@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from 'src/app/shared/models/board.model';
+import { DueDate } from 'src/app/shared/models/due-date.model';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model';
@@ -79,5 +80,12 @@ export class WorkingAreaService {
     })
     request = "[" + request.substring(0, request.length - 1) + "]";
     return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/updateMemberList", JSON.parse(request))
+  }
+
+  updateTaskDueDate(boarId: string, taskId: string, duedate: DueDate): Observable<Task> {
+    return this.httpClient.put<DueDate>(this.baseBackendUrl + boarId + "/tasks/" + taskId + "/duedate", {
+      active: duedate.active,
+      date: duedate.date
+    });
   }
 }

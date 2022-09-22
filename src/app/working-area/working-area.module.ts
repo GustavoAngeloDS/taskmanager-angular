@@ -19,6 +19,11 @@ import { MatCommonModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DialogTaskDuedateComponent } from './dialog-task-duedate/dialog-task-duedate.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     ModalStackEditComponent,
     ModalTaskComponent,
     DialogTaskComponent,
-    DialogTaskMembersComponent
+    DialogTaskMembersComponent,
+    DialogTaskDuedateComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +50,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatCheckboxModule
   ]
 })
 export class WorkingAreaModule { }
