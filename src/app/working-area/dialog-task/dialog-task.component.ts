@@ -92,7 +92,6 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
   openTaskDueDateDialog() {
     const dialog = this.matDialog.open(DialogTaskDuedateComponent,
       {
-        disableClose: true,
         data: {
           boardId: this.data.boardId,
           taskId: this.task.id
