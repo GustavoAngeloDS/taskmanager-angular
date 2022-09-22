@@ -128,9 +128,12 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   }
 
   openTaskDialog(task: Task): void {
-    const dialog = this.matDialog.open(DialogTaskComponent);
-    dialog.componentInstance.board = this.board!;
-    dialog.componentInstance.task = task;
+    const dialog = this.matDialog.open(DialogTaskComponent, {
+      data: {
+        boardId: this.board.id,
+        taskId: task.id
+      }
+    });
     dialog.afterClosed().subscribe({ complete: () => this.findBoard(this.board.id!) });
   }
 }
