@@ -4,7 +4,7 @@
     </div>
 
     <div class="col">
-        <div class="row">
+        <div class="row" [hidden]="!task.dueDate!.active">
             <mat-card class="demo-inline-calendar-card">
                 <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.dueDate!.date" name="date">
                 </mat-calendar>

@@ -33,6 +33,7 @@ export class DialogTaskDuedateComponent implements OnInit {
   }
 
   updateDueDate() {
+    this.clearDueDateWhenInactive();
     this.workingAreaService.updateTaskDueDate(this.data.boardId, this.data.taskId, this.task.dueDate!).subscribe({
       error: (error) => this.notificationService.showError("Falha ao salvar data de vencimento: " + error),
       complete: () => {
@@ -40,6 +41,10 @@ export class DialogTaskDuedateComponent implements OnInit {
         this.matDialog.getDialogById(this.dialogId)?.close()
       }
     });
+  }
+
+  clearDueDateWhenInactive() {
+    if (!this.task.dueDate?.active) this.task.dueDate!.date = undefined
   }
 
   closeDialog() {

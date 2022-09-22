@@ -1,4 +1,4 @@
-<div class="container" style="width: 500px;">
+<div class="container" style="width: 500px;" *ngIf="board != undefined && task != undefined">
     <div class="row">
         <h1>Lista de membros da tarefa</h1>
     </div>
@@ -22,7 +22,9 @@
         </mat-form-field>
     </div>
     <div class="row">
-        <button mat-flat-button color="warn"
-            (click)="saveTaskMemberList()">Salvar</button>
+        <button mat-flat-button color="warn" (click)="saveTaskMemberList()">Salvar</button>
+    </div>
+    <div class="row">
+        <button mat-stroked-button color="warn" (click)="closeDialog()">Cancelar</button>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { map, Observable, startWith } from 'rxjs';
@@ -7,7 +7,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { WorkingAreaService } from '../services/working-area.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-task-members',
@@ -24,14 +24,27 @@ export class DialogTaskMembersComponent implements OnInit {
 
   @ViewChild('emailInput') emailInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private matDialog: MatDialog, private notficationService: NotificationService, private workingAreaService: WorkingAreaService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private matDialog: MatDialog, private notficationService: NotificationService, private workingAreaService: WorkingAreaService) {
     this.boardMemberList = this.inputControl.valueChanges.pipe(
       startWith(null), map((boardMemberEmail: any) => (this._filter(boardMemberEmail)))
     );
   }
 
   ngOnInit(): void {
+    this.findBoard();
+    this.findTask();
+  }
 
+  private findBoard() {
+    this.workingAreaService.findBoardById(this.data.boardId).subscribe({
+      next: (board) => this.board = board
+    })
+  }
+
+  private findTask() {
+    this.workingAreaService.findTaskById(this.data.boardId, this.data.taskId).subscribe({
+      next: (task) => this.task = task
+    })
   }
 
   remove(member: User): void {
@@ -84,5 +97,9 @@ export class DialogTaskMembersComponent implements OnInit {
         this.matDialog.getDialogById(this.dialogId)?.close();
       }
     });
+  }
+
+  closeDialog() {
+    this.matDialog.getDialogById(this.dialogId)?.close();
   }
 }
