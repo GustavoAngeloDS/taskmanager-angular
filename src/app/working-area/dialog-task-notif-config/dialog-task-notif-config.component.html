@@ -1,0 +1,34 @@
+<div class="container" style="width: 500px;" *ngIf="task != undefined">
+    <div class="row">
+        <h1>Configuração de notificação</h1>
+    </div>
+    <form class="example-form">
+        <!-- <div class="row">
+            <mat-label>Tipo de notificação</mat-label>
+            <mat-form-field appearance="fill">
+                <mat-select [value]="task.notificationConfiguration!.notificationType">
+                    <mat-option *ngFor="let notificationType of notificationTypes" [value]="notificationType"
+                        [disabled]="notificationType !== 'EMAIL'">{{notificationType}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div> -->
+        <div class="row">
+            <mat-label>Título</mat-label>
+            <mat-form-field class="example-full-width" appearance="fill" name="title">
+                <input type="text" matInput [value]="task.notificationConfiguration!.title">
+            </mat-form-field>
+        </div>
+        <!-- <div class="row">
+            <mat-label>Mensagem</mat-label>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <textarea id="textarea" matInput rows="8" [value]="task.notificationConfiguration!.message"></textarea>
+            </mat-form-field>
+        </div> -->
+        <div class="row">
+            <button mat-flat-button color="warn" (click)="updateNotificationConfiguration()">Salvar</button>
+        </div>
+        <div class="row">
+            <button mat-stroked-button color="warn" (click)="closeDialog()">Cancelar</button>
+        </div>
+    </form>
+</div>

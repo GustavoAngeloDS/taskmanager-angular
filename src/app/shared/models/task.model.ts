@@ -1,5 +1,6 @@
 import { DueDate } from "./due-date.model";
 import { InternalTask } from "./internal-task.model";
+import { NotificationConfiguration } from "./notification-configuration.model";
 import { User } from "./user.model";
 
 export class Task {
@@ -9,5 +10,6 @@ export class Task {
         public description?: string,
         public memberList?: Array<User>,
         public internalTasks?: Array<InternalTask>,
-        public dueDate?: DueDate) {}
+        public dueDate?: DueDate,
+        public notificationConfiguration?: NotificationConfiguration) {}
 }

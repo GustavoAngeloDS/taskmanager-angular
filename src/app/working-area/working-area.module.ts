@@ -22,8 +22,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 import { DialogTaskDuedateComponent } from './dialog-task-duedate/dialog-task-duedate.component';
+import { DialogTaskNotifConfigComponent } from './dialog-task-notif-config/dialog-task-notif-config.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { DialogTaskDuedateComponent } from './dialog-task-duedate/dialog-task-du
     ModalTaskComponent,
     DialogTaskComponent,
     DialogTaskMembersComponent,
-    DialogTaskDuedateComponent
+    DialogTaskDuedateComponent,
+    DialogTaskNotifConfigComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +58,9 @@ import { DialogTaskDuedateComponent } from './dialog-task-duedate/dialog-task-du
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    MatInputModule
   ]
 })
 export class WorkingAreaModule { }

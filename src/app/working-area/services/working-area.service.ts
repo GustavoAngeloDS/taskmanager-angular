@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Board } from 'src/app/shared/models/board.model';
 import { DueDate } from 'src/app/shared/models/due-date.model';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
+import { NotificationConfiguration } from 'src/app/shared/models/notification-configuration.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { environment } from 'src/environments/environment';
@@ -86,6 +87,14 @@ export class WorkingAreaService {
     return this.httpClient.put<DueDate>(this.baseBackendUrl + boarId + "/tasks/" + taskId + "/duedate", {
       active: duedate.active,
       date: duedate.date
+    });
+  }
+
+  updateTaskNotificationConfiguration(boardId: string, taskId: string, notificationConfiguration: NotificationConfiguration): Observable<Task> {
+    return this.httpClient.put<NotificationConfiguration>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/notificationConfiguration", {
+      notificationType: notificationConfiguration.notificationType,
+      title: notificationConfiguration.title,
+      message: notificationConfiguration.message
     });
   }
 }

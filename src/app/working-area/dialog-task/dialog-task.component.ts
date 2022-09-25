@@ -8,6 +8,7 @@ import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { DialogTaskDuedateComponent } from '../dialog-task-duedate/dialog-task-duedate.component';
 import { DialogTaskMembersComponent } from '../dialog-task-members/dialog-task-members.component';
+import { DialogTaskNotifConfigComponent } from '../dialog-task-notif-config/dialog-task-notif-config.component';
 import { WorkingAreaService } from '../services/working-area.service';
 
 @Component({
@@ -91,6 +92,17 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   openTaskDueDateDialog() {
     const dialog = this.matDialog.open(DialogTaskDuedateComponent,
+      {
+        data: {
+          boardId: this.data.boardId,
+          taskId: this.task.id
+        }
+      });
+    dialog.componentInstance.dialogId = dialog.id;
+  }
+
+  openaskNotificationConfigurationDialog() {
+    const dialog = this.matDialog.open(DialogTaskNotifConfigComponent,
       {
         data: {
           boardId: this.data.boardId,

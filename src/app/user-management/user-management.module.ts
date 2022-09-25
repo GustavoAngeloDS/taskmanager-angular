@@ -24,4 +24,4 @@ import { ModalCreateUserComponent } from './modal-create-user/modal-create-user.
     UserService
   ]
 })
-export class UserOnboardingModule { }
+export class UserManagementModule { }
