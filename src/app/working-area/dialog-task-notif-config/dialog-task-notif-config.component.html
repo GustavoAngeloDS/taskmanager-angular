@@ -1,29 +1,23 @@
 <div class="container" style="width: 500px;" *ngIf="task != undefined">
     <div class="row">
-        <h1>Configuração de notificação</h1>
+        <h1 style="padding: 0%;">Configuração de notificação</h1>
     </div>
     <form class="example-form">
-        <!-- <div class="row">
-            <mat-label>Tipo de notificação</mat-label>
-            <mat-form-field appearance="fill">
-                <mat-select [value]="task.notificationConfiguration!.notificationType">
-                    <mat-option *ngFor="let notificationType of notificationTypes" [value]="notificationType"
-                        [disabled]="notificationType !== 'EMAIL'">{{notificationType}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div> -->
         <div class="row">
-            <mat-label>Título</mat-label>
-            <mat-form-field class="example-full-width" appearance="fill" name="title">
-                <input type="text" matInput [value]="task.notificationConfiguration!.title">
-            </mat-form-field>
+            <p style="padding: 0%;">Tipo de notificação</p>
+            
         </div>
-        <!-- <div class="row">
-            <mat-label>Mensagem</mat-label>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <textarea id="textarea" matInput rows="8" [value]="task.notificationConfiguration!.message"></textarea>
-            </mat-form-field>
-        </div> -->
+        <div class="row">
+            <p style="padding: 0%;">Título</p>
+            <input type="text" class="form-control" [(ngModel)]="task.notificationConfiguration!.title" name="title">
+        </div>
+        <br>
+        <div class="row">
+            <p style="padding: 0%;">Mensagem</p>
+            <textarea class="form-control" id="textarea" rows="5" [(ngModel)]="task.notificationConfiguration!.message"
+                name="message"></textarea>
+        </div>
+        <br>
         <div class="row">
             <button mat-flat-button color="warn" (click)="updateNotificationConfiguration()">Salvar</button>
         </div>
