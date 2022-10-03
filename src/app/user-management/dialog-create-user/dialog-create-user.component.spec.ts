@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalCreateUserComponent } from './modal-create-user.component';
+import { DialogCreateUserComponent } from './dialog-create-user.component';
 
-describe('ModalCreateUserComponent', () => {
-  let component: ModalCreateUserComponent;
-  let fixture: ComponentFixture<ModalCreateUserComponent>;
+describe('DialogCreateUserComponent', () => {
+  let component: DialogCreateUserComponent;
+  let fixture: ComponentFixture<DialogCreateUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalCreateUserComponent ]
+      declarations: [ DialogCreateUserComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalCreateUserComponent);
+    fixture = TestBed.createComponent(DialogCreateUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

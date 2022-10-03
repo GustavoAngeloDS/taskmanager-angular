@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDetailsComponent } from './user-details/user-details.component';
-import { ModalCreateUserComponent } from './modal-create-user/modal-create-user.component';
+import { DialogCreateUserComponent } from './dialog-create-user/dialog-create-user.component';
 
 
 
@@ -13,7 +13,7 @@ import { ModalCreateUserComponent } from './modal-create-user/modal-create-user.
   declarations: [
     LoginComponent,
     UserDetailsComponent,
-    ModalCreateUserComponent
+    DialogCreateUserComponent
   ],
   imports: [
     CommonModule,

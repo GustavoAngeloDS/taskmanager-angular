@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { SessionService } from 'src/app/shared/services/session.service';
-import { ModalCreateUserComponent } from '../modal-create-user/modal-create-user.component';
+import { DialogCreateUserComponent } from '../dialog-create-user/dialog-create-user.component';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   username?: string;
   password?: string;
 
-  constructor(private modalService: NgbModal, private sessionService: SessionService, private notificationService: NotificationService, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private matDialog: MatDialog, private sessionService: SessionService, private notificationService: NotificationService, private authenticationService: AuthenticationService, private router: Router) {
     if (this.authenticationService.isUserLoggedIn()) {
       this.router.navigate(["/boards"])
     }
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   openModalNewUser(): void {
-    this.modalService.open(ModalCreateUserComponent);
+    const dialog = this.matDialog.open(DialogCreateUserComponent);
+    dialog.componentInstance.dialogId = dialog.id;
   }
 }
