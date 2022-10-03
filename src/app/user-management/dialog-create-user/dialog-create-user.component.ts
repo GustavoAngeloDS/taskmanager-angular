@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/shared/models/user.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { UserService } from '../services/user.service';
@@ -26,16 +25,16 @@ export class DialogCreateUserComponent implements OnInit {
     this.userService.saveUser(this.newUser).subscribe({
       error: (error) => {
         this.notificationService.showError(
-          "Falha ao criar novo usuário. Tente novamente em alguns minutos [" + error + "]")
+          "Falha ao criar novo usuário. Tente novamente em alguns minutos [" + error.message + "]")
       },
       complete: () => {
         this.notificationService.showSuccess("Usuário cadastrado com sucesso!");
-        this.closeModal();
+        this.closeDialog();
       }
     });
   }
 
-  closeModal() {
+  closeDialog() {
     this.matDialog.getDialogById(this.dialogId)!.close();
   }
 }

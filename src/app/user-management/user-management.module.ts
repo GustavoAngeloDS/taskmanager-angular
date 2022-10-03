@@ -6,8 +6,7 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { DialogCreateUserComponent } from './dialog-create-user/dialog-create-user.component';
-
-
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,8 @@ import { DialogCreateUserComponent } from './dialog-create-user/dialog-create-us
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     UserService

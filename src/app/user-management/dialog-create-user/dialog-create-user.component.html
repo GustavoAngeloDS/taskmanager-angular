@@ -7,7 +7,7 @@
             Usuário
         </label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="newUser.username" required>
+            <input type="text" class="form-control" [(ngModel)]="newUser.username" name="username" required>
         </div>
     </div>
     <div class="form-group row">
@@ -15,7 +15,7 @@
             Como quer ser chamado?
         </label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="newUser.nickName" required>
+            <input type="text" class="form-control" [(ngModel)]="newUser.nickName" name="nickName" required>
         </div>
     </div>
     <div class="form-group row">
@@ -23,8 +23,8 @@
             Número de Telefone
         </label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" placeholder="(xx)x xxxx-xxxx" [(ngModel)]="newUser.phoneNumber"
-                required>
+            <input type="text" class="form-control" mask="(00) 0 0000-0000" [showMaskTyped]="true"
+                [(ngModel)]="newUser.phoneNumber" name="phoneNumber" required>
         </div>
     </div>
     <div class="form-group row">
@@ -32,8 +32,8 @@
             Endereço de e-mail
         </label>
         <div class="col-sm-6">
-            <input type="email" class="form-control" placeholder="seu.email@email.com" [(ngModel)]="newUser.email"
-                required>
+            <input type="email" class="form-control" placeholder="seu.email@email.com"
+                [(ngModel)]="newUser.email" name="email" required>
         </div>
     </div>
     <div class="form-group row">
@@ -41,7 +41,7 @@
             Senha
         </label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" [(ngModel)]="newUser.password" required>
+            <input type="password" class="form-control" [(ngModel)]="newUser.password" required name="password">
         </div>
     </div>
     <br>
@@ -55,6 +55,6 @@
     <br>
     <div class="modal-footer">
         <button type="button" class="btn btn-success" (click)="saveNewUser()">Salvar</button>
-        <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cancelar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="closeDialog()">Cancelar</button>
     </div>
 </div>
