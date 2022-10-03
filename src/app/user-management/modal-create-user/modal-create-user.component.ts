@@ -21,7 +21,6 @@ export class ModalCreateUserComponent implements OnInit {
   }
 
   saveNewUser() {
-    console.log(this.newUser);
     this.userService.saveUser(this.newUser).subscribe({
       error: (error) => {
         this.notificationService.showError(

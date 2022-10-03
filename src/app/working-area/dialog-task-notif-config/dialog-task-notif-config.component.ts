@@ -33,7 +33,6 @@ export class DialogTaskNotifConfigComponent implements OnInit {
   }
 
   updateNotificationConfiguration() {
-    console.log(this.task.notificationConfiguration);
     this.workingAreaService.updateTaskNotificationConfiguration(this.data.boardId, this.data.taskId, this.task.notificationConfiguration!).subscribe({
       complete: () => {
         this.notificationService.showSuccess("Configurações da notificação alteradas");

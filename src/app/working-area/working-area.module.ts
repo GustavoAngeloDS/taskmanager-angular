@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DialogTaskDuedateComponent } from './dialog-task-duedate/dialog-task-duedate.component';
 import { DialogTaskNotifConfigComponent } from './dialog-task-notif-config/dialog-task-notif-config.component';
 import { MatInputModule } from '@angular/material/input';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { MatInputModule } from '@angular/material/input';
     MatNativeDateModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    NgSelectModule
   ]
 })
 export class WorkingAreaModule { }

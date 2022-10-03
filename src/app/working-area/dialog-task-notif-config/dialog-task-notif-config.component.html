@@ -5,8 +5,12 @@
     <form class="example-form">
         <div class="row">
             <p style="padding: 0%;">Tipo de notificação</p>
-            
+            <ng-select name="estado" [items]="notificationTypes" bindLabel="sigla" [clearable]="false"
+                [(ngModel)]="task.notificationConfiguration!.notificationType"
+                placeholder="Selecione um tipo de notificação" style="padding: 0%;">
+            </ng-select>
         </div>
+        <br>
         <div class="row">
             <p style="padding: 0%;">Título</p>
             <input type="text" class="form-control" [(ngModel)]="task.notificationConfiguration!.title" name="title">
