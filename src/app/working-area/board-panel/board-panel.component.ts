@@ -42,21 +42,17 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   findBoard(boardId: string): void {
     this.isLoadCompleted = false;
 
-    this.workingAreaService.findBoardById(boardId).subscribe(
-      (board) => this.board = board,
-      () => { },
-      () => this.findStacks(boardId)
-    )
+    this.workingAreaService.findBoardById(boardId).subscribe({
+      next: (board) => this.board = board,
+      complete: () => this.findStacks(boardId)
+    });
   }
 
   findStacks(boardId: string): void {
-    this.workingAreaService.findStacksByBoard(boardId).subscribe(
-      (stacks: Array<Stack>) => this.stackList = stacks,
-      () => { },
-      () => {
-        this.isLoadCompleted = true
-      }
-    );
+    this.workingAreaService.findStacksByBoard(boardId).subscribe({
+      next: (stacks: Array<Stack>) => this.stackList = stacks,
+      complete: () => this.isLoadCompleted = true
+    });
   }
 
   findTasksByStack(stackId: string): Array<Task> {
@@ -65,7 +61,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   }
 
   updateStackPosition(stack: Stack, side: string): void {
-    let newPosition = side === "RIGHT" ? stack.position!+1 : stack.position!-1;
+    let newPosition = side === "RIGHT" ? stack.position! + 1 : stack.position! - 1;
     this.workingAreaService.updateStackPosition(this.board.id!, stack.id!, newPosition).subscribe({
       next: (updatedStacks) => this.stackList = updatedStacks
     });
@@ -76,9 +72,10 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   }
 
   saveNewStack(): void {
-    this.workingAreaService.saveNewStack(this.board.id!, new Stack(undefined, this.newStackName, undefined)).subscribe();
+    this.workingAreaService.saveNewStack(this.board.id!, new Stack(undefined, this.newStackName, undefined)).subscribe({
+      complete: () => this.findBoard(this.board.id!)
+    });
     this.changeInsertMode();
-    this.findBoard(this.board.id!);
   }
 
   changeInsertMode(): void {
