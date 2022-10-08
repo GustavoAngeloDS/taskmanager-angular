@@ -57,7 +57,12 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   findTasksByStack(stackId: string): Array<Task> {
     let tasks = this.stackList.find((stack) => stack.id === stackId)?.taskList;
-    return tasks === undefined ? [] : tasks;
+    return tasks === undefined ? [] : tasks.sort((task1, task2) => {
+      if (task1.position! > task2.position!)
+        return 1
+      else
+        return -1
+    });
   }
 
   updateStackPosition(stack: Stack, side: string): void {
@@ -96,7 +101,15 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   updateTaskPositionAndSync(event: CdkDragDrop<Task[]>, newStackId?: string) {
     if (event.previousContainer === event.container) {
+      const newPosition = event.currentIndex;
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log(event)
+      this.workingAreaService.updateTaskPosition(this.board.id!, this.draggedTask.id!, newPosition, newStackId!).subscribe({
+        complete: () => {
+          this.findStacks(this.board.id!);
+          this.clearDraggedTask();
+        }
+      });
     } else {
       transferArrayItem(
         event.previousContainer.data,

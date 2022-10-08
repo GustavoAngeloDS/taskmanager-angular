@@ -39,11 +39,15 @@ export class WorkingAreaService {
   }
 
   updateStackPosition(boardId: string, stackId: string, newPosition: number): Observable<Array<Stack>> {
-    return this.httpClient.put<Array<Stack>>(this.baseBackendUrl + boardId + "/stacks/" + stackId + "/" + "update-position/" + newPosition, {});
+    return this.httpClient.put<Array<Stack>>(this.baseBackendUrl + boardId + "/stacks/" + stackId + "/" + "update-stack-position/" + newPosition, {});
   }
 
   changeTaskStack(boardId: string, taskId: string, newStackId: string): Observable<Task> {
     return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/change-stack/" + newStackId, {});
+  }
+
+  updateTaskPosition(boardId: string, taskId: string, newPosition: number, newStackId: string): Observable<Array<Task>> {
+    return this.httpClient.put<Array<Task>>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/update-task-position/" + newPosition + "/" + newStackId, {});
   }
 
   saveNewTask(boardId: string, stackId: string, task: Task): Observable<Task> {
