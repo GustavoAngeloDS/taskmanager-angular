@@ -64,6 +64,13 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     return tasks === undefined ? [] : tasks;
   }
 
+  updateStackPosition(stack: Stack, side: string): void {
+    let newPosition = side === "RIGHT" ? stack.position!+1 : stack.position!-1;
+    this.workingAreaService.updateStackPosition(this.board.id!, stack.id!, newPosition).subscribe({
+      next: (updatedStacks) => this.stackList = updatedStacks
+    });
+  }
+
   saveNewTaskStack(boardId: string, taskId: string, newStackId: string): void {
     this.workingAreaService.changeTaskStack(boardId, taskId, newStackId!).subscribe();
   }

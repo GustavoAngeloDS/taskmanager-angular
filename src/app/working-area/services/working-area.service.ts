@@ -38,6 +38,10 @@ export class WorkingAreaService {
     });
   }
 
+  updateStackPosition(boardId: string, stackId: string, newPosition: number): Observable<Array<Stack>> {
+    return this.httpClient.put<Array<Stack>>(this.baseBackendUrl + boardId + "/stacks/" + stackId + "/" + "update-position/" + newPosition, {});
+  }
+
   changeTaskStack(boardId: string, taskId: string, newStackId: string): Observable<Task> {
     return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/change-stack/" + newStackId, {});
   }

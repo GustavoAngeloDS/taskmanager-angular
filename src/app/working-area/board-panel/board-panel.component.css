@@ -14,6 +14,10 @@ body {
   margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
+  border: 2px solid gray;
+  background-color: #ccc;
+  border-radius: 12px;
+  padding: 5px;
 }
 
 .example-list {
