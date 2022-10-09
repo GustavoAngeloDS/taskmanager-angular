@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -29,6 +29,8 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   draggedTask!: Task;
 
+  reloadInterval: number = 3;
+
   constructor(private matDialog: MatDialog, private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
     super(false, Action.EDITING);
     this.draggedTask = new Task();
@@ -37,6 +39,11 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
     this.findBoard(id);
+
+    setInterval(() => {
+      if (this.draggedTask.id! == undefined)
+        this.findStacks(id);
+    }, this.reloadInterval * 1000);
   }
 
   findBoard(boardId: string): void {
