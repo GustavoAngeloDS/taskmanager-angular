@@ -101,15 +101,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   updateTaskPositionAndSync(event: CdkDragDrop<Task[]>, newStackId?: string) {
     if (event.previousContainer === event.container) {
-      const newPosition = event.currentIndex;
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      console.log(event)
-      this.workingAreaService.updateTaskPosition(this.board.id!, this.draggedTask.id!, newPosition, newStackId!).subscribe({
-        complete: () => {
-          this.findStacks(this.board.id!);
-          this.clearDraggedTask();
-        }
-      });
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -117,10 +109,14 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-
-      this.saveNewTaskStack(this.board.id!, this.draggedTask.id!, newStackId!);
-      this.clearDraggedTask();
     }
+
+    this.workingAreaService.updateTaskPosition(this.board.id!, this.draggedTask.id!, event.currentIndex, newStackId!).subscribe({
+      complete: () => {
+        this.findStacks(this.board.id!);
+        this.clearDraggedTask();
+      }
+    });
   }
 
   clearDraggedTask() {
