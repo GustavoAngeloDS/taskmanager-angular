@@ -79,6 +79,24 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     });
   }
 
+  isLastStackInArray(stackId: string): boolean {
+    let isLastInArray: boolean = false;
+    for (let i = 0; i < this.stackList.length; i++) {
+      if (this.stackList[i].id! == stackId && i == this.stackList.length - 1)
+        isLastInArray = true;
+    }
+    return isLastInArray;
+  }
+
+  isFirstStackInArray(stackId: string): boolean {
+    let isFirstInArray: boolean = false;
+    for (let i = 0; i < this.stackList.length; i++) {
+      if (this.stackList[i].id! == stackId && i == 0)
+        isFirstInArray = true;
+    }
+    return isFirstInArray;
+  }
+
   saveNewTaskStack(boardId: string, taskId: string, newStackId: string): void {
     this.workingAreaService.changeTaskStack(boardId, taskId, newStackId!).subscribe();
   }

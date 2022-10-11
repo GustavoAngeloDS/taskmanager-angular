@@ -26,14 +26,14 @@
             <div style="overflow-y:scroll;overflow-x:hidden; height:300px;">
                 <div class="row" *ngIf="currentAction===Action.INSERTING">
                     <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm"> <input class="form-check-input"
+                        <span class="input-group-text" id="inputGroup-sizing-sm"><input class="form-check-input"
                                 type="checkbox" disabled text>
                         </span>
                         <input type="text" class="form-control" [(ngModel)]="newInternalTask!.description"
                             (blur)="saveNewInternalTask()">
                     </div>
                 </div>
-                <div *ngFor="let internalTask of task.internalTasks">
+                <div *ngFor="let internalTask of internalTasks">
                     <div class="row">
                         <div class="input-group input-group-sm mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-sm"> <input class="form-check-input"
@@ -42,7 +42,22 @@
                             </span>
                             <input type="text" class="form-control" [(ngModel)]="internalTask.description"
                                 (blur)="updateInternalTasks(internalTask)">
+                            <button type="button" class="btn btn-secondary"
+                                (click)="removeInternalTask(internalTask.id!)"><i
+                                    class="bi bi-x-square-fill"></i></button>
+                            <button type="button" class="btn btn-secondary"
+                                (click)="updateInternalTaskPosition(internalTask.id!, internalTask.position!+1)"
+                                [disabled]="isLastInternalTaskInArray(internalTask.id!)"
+                                style="border-left: 1px; border-style: ridge;"><i
+                                    class="bi bi-arrow-down-square"></i></button>
+                            <button type="button" class="btn btn-secondary"
+                                (click)="updateInternalTaskPosition(internalTask.id!, internalTask.position!-1)"
+                                [disabled]="isFirstInternalTaskInArray(internalTask.id!)"
+                                style="border-left: 2px; border-style: ridge;"><i
+                                    class="bi bi-arrow-up-square"></i></button>
                         </div>
+                        <!--
+                            (click)="changeInternalTaskPosition(internalTask, 'DOWN')" -->
                     </div>
                 </div>
             </div>
@@ -54,7 +69,8 @@
                         (click)="openTaskMembersDialog()">Membros</button>
                     <button type="button" class="btn btn-light btn-outline-dark" (click)="openTaskDueDateDialog()">Conf.
                         vencimento</button>
-                    <button type="button" class="btn btn-light btn-outline-dark" (click)="openaskNotificationConfigurationDialog()">Conf. notificações</button>
+                    <button type="button" class="btn btn-light btn-outline-dark"
+                        (click)="openaskNotificationConfigurationDialog()">Conf. notificações</button>
                 </div>
             </div>
         </div>

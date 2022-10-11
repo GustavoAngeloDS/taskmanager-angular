@@ -65,17 +65,26 @@ export class WorkingAreaService {
   }
 
   updateInternalTask(boardId: string, taskId: string, internalTask: InternalTask): Observable<Task> {
-    return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/internalTask/" + internalTask.id, {
+    return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/internalTasks/" + internalTask.id, {
       checked: internalTask.checked,
-      description: internalTask.description
+      description: internalTask.description,
+      position: internalTask.position
     });
   }
 
   saveNewInternalTask(boardId: string, taskId: string, internalTask: InternalTask): Observable<Task> {
-    return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/includeInternalTask", {
+    return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/internalTasks", {
       checked: false,
       description: internalTask.description
     });
+  }
+
+  updateInternalTaskPosition(boardId: string, taskId: string, internalTaskId: string, newPosition: number): Observable<Task> {
+    return this.httpClient.put<InternalTask>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/internalTasks/" + internalTaskId + "/update-position/" + newPosition, {});
+  }
+
+  removeInternalTask(boardId: string, taskId: string, internalTaskId: string): Observable<void> {
+    return this.httpClient.delete<void>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/internalTasks/" + internalTaskId);
   }
 
   findTaskById(boardId: string, taskId: string): Observable<Task> {

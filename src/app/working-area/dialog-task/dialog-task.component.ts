@@ -18,6 +18,7 @@ import { WorkingAreaService } from '../services/working-area.service';
 })
 export class DialogTaskComponent extends PageBehavior implements OnInit {
   task!: Task;
+  internalTasks!: Array<InternalTask>;
 
   Action = Action;
 
@@ -34,7 +35,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   private findTask() {
     this.workingAreaService.findTaskById(this.data.boardId, this.data.taskId).subscribe({
-      next: (task) => this.task = task
+      next: (task) => this.setTaskAndInternalTasks(task)
     })
   }
 
@@ -47,9 +48,36 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   updateInternalTasks(internalTask: InternalTask): void {
     this.workingAreaService.updateInternalTask(this.data.boardId, this.task.id!, internalTask).subscribe({
+      next: (task: Task) => {
+        this.setTaskAndInternalTasks(task)
+      },
       complete: () => this.calcPercentage(),
       error: (error) => this.notificationService.showError("Falha ao atualizar tarefa interna: " + error)
     });
+  }
+
+  updateInternalTaskPosition(internalStackId: string, newPosition: number): void {
+    this.workingAreaService.updateInternalTaskPosition(this.data.boardId, this.task.id!, internalStackId, newPosition).subscribe({
+      next: (task: Task) => this.setTaskAndInternalTasks(task)
+    });
+  }
+
+  isLastInternalTaskInArray(internalTaskId: string): boolean {
+    let isLastInArray: boolean = false;
+    for (let i = 0; i < this.internalTasks.length; i++) {
+      if (this.internalTasks[i].id! == internalTaskId && i == this.internalTasks.length - 1)
+        isLastInArray = true;
+    }
+    return isLastInArray;
+  }
+
+  isFirstInternalTaskInArray(internalTaskId: string): boolean {
+    let isLastInArray: boolean = false;
+    for (let i = 0; i < this.internalTasks.length; i++) {
+      if (this.internalTasks[i].id! == internalTaskId && i == 0)
+        isLastInArray = true;
+    }
+    return isLastInArray;
   }
 
   calcPercentage(): number {
@@ -66,7 +94,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
         this.currentAction = Action.VIEWING;
         this.workingAreaService.findTaskById(this.data.boardId, this.task.id!).subscribe({
           next: (task) => {
-            this.task = task;
+            this.setTaskAndInternalTasks(task);
             this.calcPercentage();
           }
         });
@@ -74,6 +102,17 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
       },
       error: (error) => this.notificationService.showError("Falha ao inserir nova tarefa interna:" + error.message)
     });
+  }
+
+  setTaskAndInternalTasks(task: Task) {
+    this.task = task;
+    this.internalTasks = task.internalTasks!;
+  }
+
+  removeInternalTask(internalTaskId: string) {
+    this.workingAreaService.removeInternalTask(this.data.boardId, this.task.id!, internalTaskId).subscribe({
+      complete: () => this.findTask()
+    })
   }
 
   allowCreateNewInternalTask(): void {
