@@ -14,16 +14,20 @@ export class BoardManagementService {
 
   constructor(private httpClient: HttpClient) { }
 
+  findById(boardId: string): Observable<Board> {
+    return this.httpClient.get<Board>(this.backendUrl + "/" + boardId);
+  }
+
   findAll(): Observable<Array<Board>> {
     return this.httpClient.get<Array<Board>>(this.backendUrl);
   };
 
   removeBoard(board: Board): Observable<void> {
-    return this.httpClient.delete<void>(this.backendUrl+"/"+board.id);
+    return this.httpClient.delete<void>(this.backendUrl + "/" + board.id);
   }
 
   updateBoard(board: Board): Observable<Board> {
-    return this.httpClient.put<Board>(this.backendUrl+"/"+board.id, {
+    return this.httpClient.put<Board>(this.backendUrl + "/" + board.id, {
       id: board.id,
       name: board.name,
       description: board.description

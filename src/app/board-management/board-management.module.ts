@@ -5,20 +5,22 @@ import { ModalBoardDetailsComponent } from './modal-board-details/modal-board-de
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { ModalBoardDeleteComponent } from './modal-board-delete/modal-board-delete.component';
+import { DialogBoardDeleteComponent } from './dialog-board-delete/dialog-board-delete.component';
 import { ModalBoardInsertComponent } from './modal-board-insert/modal-board-insert.component';
-import { BoardEditComponent } from './board-edit/board-edit.component';
+import { DialogBoardEditComponent } from './dialog-board-edit/dialog-board-edit.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { DialogGeneralManagementComponent } from './dialog-general-management/dialog-general-management.component';
 
 
 @NgModule({
   declarations: [
     BoardListComponent,
     ModalBoardDetailsComponent,
-    ModalBoardDeleteComponent,
+    DialogBoardDeleteComponent,
     ModalBoardInsertComponent,
-    BoardEditComponent
+    DialogBoardEditComponent,
+    DialogGeneralManagementComponent
   ],
   imports: [
     CommonModule,

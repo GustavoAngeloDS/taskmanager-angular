@@ -1,0 +1,23 @@
+<div class="container" style="width: 700px;" *ngIf="board != undefined">
+    <div class="row">
+        <h1 style="padding-left: 0px;"><b>{{board.name}}</b></h1>
+    </div>
+    <div class="col">
+        <div class="row" style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-secondary">Gerenciar membros</button>
+        </div>
+        <div class="row" style="padding-bottom: 5px;">
+            <button type="button" class="btn btn-secondary" (click)="openDialogBoardEdit()">Editar informações
+                gerais</button>
+        </div>
+        <div class="row" style="padding-bottom: 15px;">
+            <button type="button" class="btn btn-secondary">Visualizar relatórios</button>
+        </div>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-danger" (click)="openDialogBoardDelete()">Excluir quadro</button>
+        </div>
+    </div>
+</div>

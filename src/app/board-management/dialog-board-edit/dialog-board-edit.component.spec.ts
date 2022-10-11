@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardEditComponent } from './board-edit.component';
+import { DialogBoardEditComponent } from './dialog-board-edit.component';
 
-describe('BoardEditComponent', () => {
-  let component: BoardEditComponent;
-  let fixture: ComponentFixture<BoardEditComponent>;
+describe('DialogBoardEditComponent', () => {
+  let component: DialogBoardEditComponent;
+  let fixture: ComponentFixture<DialogBoardEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BoardEditComponent ]
+      declarations: [ DialogBoardEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BoardEditComponent);
+    fixture = TestBed.createComponent(DialogBoardEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

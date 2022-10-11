@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalBoardDeleteComponent } from './modal-board-delete.component';
+import { DialogBoardDeleteComponent } from './dialog-board-delete.component';
 
-describe('ModalBoardDeleteComponent', () => {
-  let component: ModalBoardDeleteComponent;
-  let fixture: ComponentFixture<ModalBoardDeleteComponent>;
+describe('DialogBoardDeleteComponent', () => {
+  let component: DialogBoardDeleteComponent;
+  let fixture: ComponentFixture<DialogBoardDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalBoardDeleteComponent ]
+      declarations: [ DialogBoardDeleteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalBoardDeleteComponent);
+    fixture = TestBed.createComponent(DialogBoardDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
