@@ -35,7 +35,8 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   private findTask() {
     this.workingAreaService.findTaskById(this.data.boardId, this.data.taskId).subscribe({
-      next: (task) => this.setTaskAndInternalTasks(task)
+      next: (task) => this.setTaskAndInternalTasks(task),
+      complete: () => console.log(this.isDateOverdue())
     })
   }
 
@@ -138,6 +139,9 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
         }
       });
     dialog.componentInstance.dialogId = dialog.id;
+    dialog.afterClosed().subscribe({
+      complete: () => this.findTask()
+    })
   }
 
   openaskNotificationConfigurationDialog() {
@@ -149,5 +153,10 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
         }
       });
     dialog.componentInstance.dialogId = dialog.id;
+  }
+
+  isDateOverdue(): boolean {
+    var todayDate = new Date().toISOString().slice(0, 10);
+    return new Date(this.task.deliveryDate!.date!) < new Date(todayDate);
   }
 }

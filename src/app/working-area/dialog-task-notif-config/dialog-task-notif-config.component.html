@@ -5,7 +5,7 @@
     <form class="example-form">
         <div class="row">
             <p style="padding: 0%;">Tipo de notificação</p>
-            <ng-select name="estado" [items]="notificationTypes" bindLabel="sigla" [clearable]="false"
+            <ng-select name="estado" [items]="notificationTypes" [clearable]="false"
                 [(ngModel)]="task.notificationConfiguration!.notificationType"
                 placeholder="Selecione um tipo de notificação" style="padding: 0%;">
             </ng-select>

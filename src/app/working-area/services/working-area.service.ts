@@ -104,7 +104,8 @@ export class WorkingAreaService {
     return this.httpClient.put<DeliveryDate>(this.baseBackendUrl + boarId + "/tasks/" + taskId + "/deliveryDate", {
       active: deliveryDate.active,
       date: deliveryDate.date,
-      accomplished: deliveryDate.accomplished
+      accomplished: deliveryDate.accomplished,
+      time: deliveryDate.time
     });
   }
 

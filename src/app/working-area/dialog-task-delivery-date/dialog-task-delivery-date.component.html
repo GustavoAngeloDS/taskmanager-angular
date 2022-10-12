@@ -1,18 +1,25 @@
 <div class="container" style="width: 350px;" *ngIf="task != undefined">
     <div class="row">
-        <h1>Configurar data de vencimento</h1>
+        <h1>Configurar data de entrega</h1>
     </div>
 
     <div class="col">
         <div class="row" [hidden]="!task.deliveryDate!.active">
             <mat-card class="demo-inline-calendar-card">
-                <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.deliveryDate!.date" name="date">
+                <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.deliveryDate!.date"
+                    name="date">
                 </mat-calendar>
             </mat-card>
         </div>
+        <div class="row" style="padding-top: 10px;">
+            <label style="padding-left: 0px;">Horário de entrega</label>
+            <ng-select name="estado" [items]="availableNotificationTimes" [clearable]="false"
+                [(ngModel)]="task.deliveryDate!.time" placeholder="Selecione o horário de entrega" style="padding: 0%;">
+            </ng-select>
+        </div>
         <br>
         <div class="row">
-            <mat-checkbox [color]="color" [(ngModel)]="task.deliveryDate!.active" name="active">Data de vencimento ativa
+            <mat-checkbox [color]="color" [(ngModel)]="task.deliveryDate!.active" name="active">Data de entrega ativa
             </mat-checkbox>
         </div>
         <div class="row">
