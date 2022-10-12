@@ -24,7 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { DialogTaskDuedateComponent } from './dialog-task-duedate/dialog-task-duedate.component';
+import { DialogTaskDeliveryDateComponent } from './dialog-task-delivery-date/dialog-task-delivery-date.component';
 import { DialogTaskNotifConfigComponent } from './dialog-task-notif-config/dialog-task-notif-config.component';
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -36,7 +36,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ModalTaskComponent,
     DialogTaskComponent,
     DialogTaskMembersComponent,
-    DialogTaskDuedateComponent,
+    DialogTaskDeliveryDateComponent,
     DialogTaskNotifConfigComponent
   ],
   imports: [

@@ -4,22 +4,22 @@
     </div>
 
     <div class="col">
-        <div class="row" [hidden]="!task.dueDate!.active">
+        <div class="row" [hidden]="!task.deliveryDate!.active">
             <mat-card class="demo-inline-calendar-card">
-                <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.dueDate!.date" name="date">
+                <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.deliveryDate!.date" name="date">
                 </mat-calendar>
             </mat-card>
         </div>
         <br>
         <div class="row">
-            <mat-checkbox [color]="color" [(ngModel)]="task.dueDate!.active" name="active">Data de vencimento ativa
+            <mat-checkbox [color]="color" [(ngModel)]="task.deliveryDate!.active" name="active">Data de vencimento ativa
             </mat-checkbox>
         </div>
         <div class="row">
             <hr>
         </div>
         <div class="row">
-            <button mat-flat-button color="warn" (click)="updateDueDate()">Salvar</button>
+            <button mat-flat-button color="warn" (click)="updateDeliveryDate()">Salvar</button>
             <button mat-stroked-button color="warn" (click)="closeDialog()">Cancelar</button>
         </div>
     </div>

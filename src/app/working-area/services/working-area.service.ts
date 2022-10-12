@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from 'src/app/shared/models/board.model';
-import { DueDate } from 'src/app/shared/models/due-date.model';
+import { DeliveryDate } from 'src/app/shared/models/delivery-date.model';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { NotificationConfiguration } from 'src/app/shared/models/notification-configuration.model';
 import { Stack } from 'src/app/shared/models/stack.model';
@@ -100,10 +100,11 @@ export class WorkingAreaService {
     return this.httpClient.post<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/updateMemberList", JSON.parse(request))
   }
 
-  updateTaskDueDate(boarId: string, taskId: string, duedate: DueDate): Observable<Task> {
-    return this.httpClient.put<DueDate>(this.baseBackendUrl + boarId + "/tasks/" + taskId + "/duedate", {
-      active: duedate.active,
-      date: duedate.date
+  updateTaskDeliveryDate(boarId: string, taskId: string, deliveryDate: DeliveryDate): Observable<Task> {
+    return this.httpClient.put<DeliveryDate>(this.baseBackendUrl + boarId + "/tasks/" + taskId + "/deliveryDate", {
+      active: deliveryDate.active,
+      date: deliveryDate.date,
+      accomplished: deliveryDate.accomplished
     });
   }
 

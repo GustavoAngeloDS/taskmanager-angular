@@ -1,5 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/shared/services/notification.service';
@@ -8,11 +7,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from 'src/app/shared/models/task.model';
 
 @Component({
-  selector: 'app-dialog-task-duedate',
-  templateUrl: './dialog-task-duedate.component.html',
-  styleUrls: ['./dialog-task-duedate.component.css']
+  selector: 'app-dialog-task-delivery-date',
+  templateUrl: './dialog-task-delivery-date.component.html',
+  styleUrls: ['./dialog-task-delivery-date.component.css']
 })
-export class DialogTaskDuedateComponent implements OnInit {
+export class DialogTaskDeliveryDateComponent implements OnInit {
 
   task!: Task;
   dialogId!: string;
@@ -32,9 +31,9 @@ export class DialogTaskDuedateComponent implements OnInit {
     });
   }
 
-  updateDueDate() {
-    this.clearDueDateWhenInactive();
-    this.workingAreaService.updateTaskDueDate(this.data.boardId, this.data.taskId, this.task.dueDate!).subscribe({
+  updateDeliveryDate() {
+    this.clearDeliveryDateWhenInactive();
+    this.workingAreaService.updateTaskDeliveryDate(this.data.boardId, this.data.taskId, this.task.deliveryDate!).subscribe({
       error: (error) => this.notificationService.showError("Falha ao salvar data de vencimento: " + error),
       complete: () => {
         this.notificationService.showSuccess("Data de vencimento alterada");
@@ -43,8 +42,8 @@ export class DialogTaskDuedateComponent implements OnInit {
     });
   }
 
-  clearDueDateWhenInactive() {
-    if (!this.task.dueDate?.active) this.task.dueDate!.date = undefined
+  clearDeliveryDateWhenInactive() {
+    if (!this.task.deliveryDate?.active) this.task.deliveryDate!.date = undefined
   }
 
   closeDialog() {
@@ -52,9 +51,9 @@ export class DialogTaskDuedateComponent implements OnInit {
   }
 
   initialDate(): Date {
-    if (this.task.dueDate!.date == undefined)
+    if (this.task.deliveryDate!.date == undefined)
       return new Date();
     else
-      return this.task.dueDate!.date;
+      return this.task.deliveryDate!.date;
   }
 }

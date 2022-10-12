@@ -6,7 +6,7 @@ import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-import { DialogTaskDuedateComponent } from '../dialog-task-duedate/dialog-task-duedate.component';
+import { DialogTaskDeliveryDateComponent } from '../dialog-task-delivery-date/dialog-task-delivery-date.component';
 import { DialogTaskMembersComponent } from '../dialog-task-members/dialog-task-members.component';
 import { DialogTaskNotifConfigComponent } from '../dialog-task-notif-config/dialog-task-notif-config.component';
 import { WorkingAreaService } from '../services/working-area.service';
@@ -129,8 +129,8 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     dialog.componentInstance.dialogId = dialog.id;
   }
 
-  openTaskDueDateDialog() {
-    const dialog = this.matDialog.open(DialogTaskDuedateComponent,
+  openTaskDeliveryDateDialog() {
+    const dialog = this.matDialog.open(DialogTaskDeliveryDateComponent,
       {
         data: {
           boardId: this.data.boardId,
