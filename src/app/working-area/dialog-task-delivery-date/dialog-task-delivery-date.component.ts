@@ -56,6 +56,7 @@ export class DialogTaskDeliveryDateComponent implements OnInit {
   }
 
   initialDate(): Date {
+    console.log(this.task.deliveryDate!.date!)
     return new Date(this.task.deliveryDate!.date!)
   }
 }

@@ -15,7 +15,7 @@ import { DialogTaskMembersComponent } from './dialog-task-members/dialog-task-me
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatCommonModule } from '@angular/material/core';
+import { MatCommonModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +28,7 @@ import { DialogTaskDeliveryDateComponent } from './dialog-task-delivery-date/dia
 import { DialogTaskNotifConfigComponent } from './dialog-task-notif-config/dialog-task-notif-config.component';
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,24 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatCheckboxModule,
     MatSelectModule,
     MatInputModule,
-    NgSelectModule
-  ]
+    NgSelectModule,
+    MatMomentDateModule
+  ],
+  providers: [
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: {
+        parse: {
+          dateInput: ['l', 'LL'],
+        },
+        display: {
+          dateInput: 'L',
+          monthYearLabel: 'MMM YYYY',
+          dateA11yLabel: 'LL',
+          monthYearA11yLabel: 'MMMM YYYY',
+        },
+      },
+    },
+  ],
 })
 export class WorkingAreaModule { }
