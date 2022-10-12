@@ -4,24 +4,29 @@
     </div>
 
     <div class="col">
-        <div class="row" [hidden]="!task.deliveryDate!.active">
-            <mat-card class="demo-inline-calendar-card">
-                <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.deliveryDate!.date"
-                    name="date">
-                </mat-calendar>
-            </mat-card>
-        </div>
-        <div class="row" style="padding-top: 10px;">
-            <label style="padding-left: 0px;">Horário de entrega</label>
-            <ng-select name="estado" [items]="availableNotificationTimes" [clearable]="false"
-                [(ngModel)]="task.deliveryDate!.time" placeholder="Selecione o horário de entrega" style="padding: 0%;">
-            </ng-select>
+        <div [hidden]="!task.deliveryDate!.active">
+            <div class="row">
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [startAt]="initialDate()" ngDefaultControl [(selected)]="task.deliveryDate!.date"
+                        name="date">
+                    </mat-calendar>
+                </mat-card>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <label style="padding-left: 0px;">Horário de entrega</label>
+                <ng-select name="estado" [items]="availableNotificationTimes" [clearable]="false"
+                    [(ngModel)]="task.deliveryDate!.time" placeholder="Selecione o horário de entrega"
+                    style="padding: 0%;">
+                </ng-select>
+            </div>
         </div>
         <br>
         <div class="row">
-            <mat-checkbox [color]="color" [(ngModel)]="task.deliveryDate!.active" name="active">Data de entrega ativa
+            <mat-checkbox [color]="color" [(ngModel)]="task.deliveryDate!.active" name="active">Data de entrega
+                ativa
             </mat-checkbox>
         </div>
+
         <div class="row">
             <hr>
         </div>

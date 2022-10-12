@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/shared/enums/action';
-import { Board } from 'src/app/shared/models/board.model';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Task } from 'src/app/shared/models/task.model';
@@ -35,8 +34,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   private findTask() {
     this.workingAreaService.findTaskById(this.data.boardId, this.data.taskId).subscribe({
-      next: (task) => this.setTaskAndInternalTasks(task),
-      complete: () => console.log(this.isDateOverdue())
+      next: (task) => this.setTaskAndInternalTasks(task)
     })
   }
 
@@ -155,8 +153,20 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     dialog.componentInstance.dialogId = dialog.id;
   }
 
-  isDateOverdue(): boolean {
+  completeTask(): void {
+    this.task.deliveryDate!.accomplished = true;
+    this.workingAreaService.updateTaskDeliveryDate(this.data.boardId, this.task.id!, this.task.deliveryDate!).subscribe({
+      complete: () => {
+        this.notificationService.showSuccess("Data de entrega atendida")
+        this.findTask()
+      }
+    });
+  }
+
+  isDateAndTimeOverdue(): boolean {
     var todayDate = new Date().toISOString().slice(0, 10);
-    return new Date(this.task.deliveryDate!.date!) < new Date(todayDate);
+    var currentTime = new Date().getHours() + ":" + new Date().getMinutes();
+
+    return (new Date(this.task.deliveryDate!.date!) <= new Date(todayDate) && this.task.deliveryDate!.time! < currentTime) && !this.task.deliveryDate!.accomplished!;
   }
 }

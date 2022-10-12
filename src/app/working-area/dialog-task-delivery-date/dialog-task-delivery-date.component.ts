@@ -48,7 +48,11 @@ export class DialogTaskDeliveryDateComponent implements OnInit {
   }
 
   clearDeliveryDateWhenInactive() {
-    if (!this.task.deliveryDate?.active) this.task.deliveryDate!.date = undefined
+    if (!this.task.deliveryDate?.active) {
+      this.task.deliveryDate!.date = undefined;
+      this.task.deliveryDate!.time = undefined;
+      this.task.deliveryDate!.accomplished = false;
+    }
   }
 
   closeDialog() {
@@ -56,7 +60,10 @@ export class DialogTaskDeliveryDateComponent implements OnInit {
   }
 
   initialDate(): Date {
-    console.log(this.task.deliveryDate!.date!)
-    return new Date(this.task.deliveryDate!.date!)
+    let date = new Date();
+    if (this.task.deliveryDate!.date! != undefined)
+      date = this.task.deliveryDate!.date!;
+      
+    return date;
   }
 }

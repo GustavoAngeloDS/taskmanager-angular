@@ -1,4 +1,4 @@
-<div class="container" style="width: 1000px;" *ngIf="task != undefined">
+<div class="container" style="width: 1000px; height: 700px;" *ngIf="task != undefined">
     <div class="row">
         <div class="col-9">
             <div>
@@ -15,7 +15,13 @@
                 <hr>
             </div>
             <div class="row" *ngIf="task.deliveryDate!= undefined && task.deliveryDate!.active">
-                <div class="col">
+                <div class="alert alert-warning" role="alert" *ngIf="isDateAndTimeOverdue()">
+                    <b>A tarefa está em atraso</b>
+                </div>
+                <div class="alert alert-success" role="alert" *ngIf="task.deliveryDate!.accomplished">
+                    <b>Tarefa marcada como entregue</b>
+                </div>
+                <div class="col" style="padding-left: 0px;">
                     <div class="card text-bg-light mb-3" style="padding: 0px;">
                         <div class="card-header">Data de entrega</div>
                         <div class="card-body">
@@ -23,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col" style="padding-right: 0px;">
                     <div class="card text-bg-light mb-3" style="padding: 0px;">
                         <div class="card-header">Horário</div>
                         <div class="card-body">
@@ -31,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-
+                <button type="button" class="btn btn-success" (click)="completeTask()" [hidden]="task.deliveryDate.accomplished">Marcar data de entrega como atentida</button>
                 <hr>
             </div>
             <div class="row">
@@ -45,7 +51,7 @@
                     <b>{{calcPercentage()}}% concl.</b>
                 </div>
             </div>
-            <div style="overflow-y:scroll;overflow-x:hidden; height:300px;">
+            <div style="overflow-y:scroll;overflow-x:hidden; height:150px;">
                 <div class="row" *ngIf="currentAction===Action.INSERTING">
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm"><input class="form-check-input"
@@ -78,8 +84,6 @@
                                 style="border-left: 2px; border-style: ridge;"><i
                                     class="bi bi-arrow-up-square"></i></button>
                         </div>
-                        <!--
-                            (click)="changeInternalTaskPosition(internalTask, 'DOWN')" -->
                     </div>
                 </div>
             </div>
