@@ -163,10 +163,13 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     });
   }
 
-  isDateAndTimeOverdue(): boolean {
-    var todayDate = new Date().toISOString().slice(0, 10);
-    var currentTime = new Date().getHours() + ":" + new Date().getMinutes();
+  isDeliveryOverdue(): boolean {
+    let todayDate = (new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }).substring(0, 10).replace("/", "-")).replace("/", "-");
+    let deliveryDate = this.task.deliveryDate!.date!.toString().replace("-", "").replace("-", "");
+    deliveryDate = deliveryDate.substring(deliveryDate.length - 2) + "-" + deliveryDate.substring(4, 6) + "-" + deliveryDate.substring(0, 4)
 
-    return (new Date(this.task.deliveryDate!.date!) <= new Date(todayDate) && this.task.deliveryDate!.time! < currentTime) && !this.task.deliveryDate!.accomplished!;
+    var currentTime = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }).slice(10).substring(0, 6).trim();
+
+    return ((deliveryDate < todayDate) || (deliveryDate == todayDate && this.task.deliveryDate!.time! < currentTime)) && !this.task.deliveryDate!.accomplished!;
   }
 }

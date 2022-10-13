@@ -15,7 +15,7 @@
                 <hr>
             </div>
             <div class="row" *ngIf="task.deliveryDate!= undefined && task.deliveryDate!.active">
-                <div class="alert alert-warning" role="alert" *ngIf="isDateAndTimeOverdue()">
+                <div class="alert alert-warning" role="alert" *ngIf="isDeliveryOverdue()">
                     <b>A tarefa está em atraso</b>
                 </div>
                 <div class="alert alert-success" role="alert" *ngIf="task.deliveryDate!.accomplished">
