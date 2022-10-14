@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Board } from 'src/app/shared/models/board.model';
 import { DialogBoardDeleteComponent } from '../dialog-board-delete/dialog-board-delete.component';
 import { DialogBoardEditComponent } from '../dialog-board-edit/dialog-board-edit.component';
+import { DialogMembersManagementComponent } from '../dialog-members-management/dialog-members-management.component';
 import { BoardManagementService } from '../services/board-management.service';
 
 @Component({
@@ -38,11 +39,24 @@ export class DialogGeneralManagementComponent implements OnInit {
   }
 
   openDialogBoardEdit() {
-    const dialog = this.matDialog.open(DialogBoardEditComponent);
-    dialog.componentInstance.board = this.board;
+    const dialog = this.matDialog.open(DialogBoardEditComponent, {
+      data: {
+        boardId: this.board.id!
+      }
+    });
     dialog.componentInstance.dialogId = dialog.id;
+
     dialog.afterClosed().subscribe({
       complete: () => this.findBoard(this.data.boardId)
     });
+  }
+
+  openDialogMembersManagement() {
+    const dialog = this.matDialog.open(DialogMembersManagementComponent, {
+      data: {
+        boardId: this.board.id!
+      }
+    });
+    dialog.componentInstance.dialogId = dialog.id;
   }
 }

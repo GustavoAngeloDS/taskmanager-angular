@@ -11,6 +11,7 @@ import { DialogBoardEditComponent } from './dialog-board-edit/dialog-board-edit.
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogGeneralManagementComponent } from './dialog-general-management/dialog-general-management.component';
+import { DialogMembersManagementComponent } from './dialog-members-management/dialog-members-management.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DialogGeneralManagementComponent } from './dialog-general-management/di
     DialogBoardDeleteComponent,
     ModalBoardInsertComponent,
     DialogBoardEditComponent,
-    DialogGeneralManagementComponent
+    DialogGeneralManagementComponent,
+    DialogMembersManagementComponent
   ],
   imports: [
     CommonModule,

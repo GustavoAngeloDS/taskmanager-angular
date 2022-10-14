@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BoardInvitation } from 'src/app/shared/models/board-invitation.model';
 import { Board } from 'src/app/shared/models/board.model';
-import { User } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -38,6 +38,13 @@ export class BoardManagementService {
     return this.httpClient.post<Board>(this.backendUrl, {
       name: board.name,
       description: board.description
+    });
+  }
+
+  sendBoardInvitation(boardInvitation: BoardInvitation): Observable<BoardInvitation> {
+    return this.httpClient.post<BoardInvitation>(environment.apiUrl + "/board-invitation/new-invite", {
+      boardId: boardInvitation.boardId!,
+      memberEmail: boardInvitation.memberEmail!
     });
   }
 }
