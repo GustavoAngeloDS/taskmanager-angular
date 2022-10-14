@@ -12,7 +12,8 @@
                     <li class="list-group-item" *ngFor="let user of board.memberList" style="padding-right: 0px;"><label
                             style="margin-right: 44%;">{{ user.username }} - {{
                             user.email }}</label><button type="button" class="btn btn-secondary"
-                            style="align-self: flex-end;"><i class="bi bi-person-x-fill"></i></button>
+                            [disabled]="board.owner!.id! == user.id! " style="align-self: flex-end;"
+                            (click)="openDialogMemberDelete(user)"><i class="bi bi-person-x-fill"></i></button>
                     </li>
                 </ul>
             </div>

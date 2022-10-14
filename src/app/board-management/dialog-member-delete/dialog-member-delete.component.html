@@ -1,0 +1,17 @@
+<div class="container" style="width: 350px;">
+    <div class="col">
+        <div class="row">
+            <h4> Remover [{{ memberToDelete.username }}] do quadro?</h4>
+        </div>
+        <div class="row">
+            <b>ATENÇÃO: Esta ação não poderá ser desfeita</b>
+        </div>
+        <div class="row" style="padding-top: 10px;">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-danger" (click)="deleteMember()">Excluir</button>
+        <button type="button" class="btn btn-outline-dark" (click)="closeDialog()">Cancelar</button>
+    </div>
+</div>

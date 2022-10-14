@@ -2,7 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { BoardInvitation } from 'src/app/shared/models/board-invitation.model';
 import { Board } from 'src/app/shared/models/board.model';
+import { User } from 'src/app/shared/models/user.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { DialogMemberDeleteComponent } from '../dialog-member-delete/dialog-member-delete.component';
 import { BoardManagementService } from '../services/board-management.service';
 
 @Component({
@@ -45,5 +47,19 @@ export class DialogMembersManagementComponent implements OnInit {
 
   cleanInput() {
     this.newMemberMail = "";
+  }
+
+  openDialogMemberDelete(user: User) {
+    const dialog = this.matDialog.open(DialogMemberDeleteComponent, {
+      data: {
+        memberToDelete: user
+      }
+    });
+    dialog.componentInstance.dialogId = dialog.id;
+    dialog.componentInstance.boardId = this.data.boardId;
+
+    dialog.afterClosed().subscribe({
+      complete: () => this.findBoard(this.data.boardId)
+    })
   }
 }

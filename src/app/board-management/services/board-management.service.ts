@@ -47,4 +47,8 @@ export class BoardManagementService {
       memberEmail: boardInvitation.memberEmail!
     });
   }
+
+  removeMember(boardId: string, memberEmail: string): Observable<Board> {
+    return this.httpClient.delete<Board>(this.backendUrl + "/" + boardId + "/remove-member/" + memberEmail);
+  }
 }
