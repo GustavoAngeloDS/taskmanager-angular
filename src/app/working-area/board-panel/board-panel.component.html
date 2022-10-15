@@ -1,45 +1,57 @@
-<body class="container-fluid">
-
-    <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
-    <div cdkDropListGroup class="col">
-        <div class="example-container" *ngFor="let stack of stackList">
-            <div class="row align-items-center">
-                <button (click)="updateStackPosition(stack, 'LEFT')" class="col-1"
-                    [disabled]="isFirstStackInArray(stack.id!)" style="padding: 0px; margin-left: 15px;"><i
-                        class="bi bi-arrow-left-square"></i></button>
-                <div class="col">
-                    <p class="col" style="text-align: center; margin-bottom: 0px;"><b>{{stack.name}}</b>&nbsp;&nbsp;
-                        <button (click)="openModalStackUpdate(stack)"><i class="bi bi-pencil-fill"></i></button>
-                        <button (click)="openModalNewTask(stack.id)"><i class="bi bi-plus-square-dotted"></i></button>
-                    </p>
+<div class="container-fluid outer-div">
+    <div class="principal">
+        <div class="spinner-border spinner-loading" role="status" *ngIf="!isLoadCompleted"></div>
+        <div cdkDropListGroup class="col">
+            <div class="example-container" *ngFor="let stack of stackList">
+                <div class="row align-items-center">
+                    <button (click)="updateStackPosition(stack, 'LEFT')" class="col-1"
+                        [disabled]="isFirstStackInArray(stack.id!)" style="padding: 0px; margin-left: 15px;"><i
+                            class="bi bi-arrow-left-square"></i></button>
+                    <div class="col">
+                        <p class="col" style="text-align: center; margin-bottom: 0px;"><b>{{stack.name}}</b>&nbsp;&nbsp;
+                            <button (click)="openModalStackUpdate(stack)"><i class="bi bi-pencil-fill"></i></button>
+                            <button (click)="openModalNewTask(stack.id)"><i
+                                    class="bi bi-plus-square-dotted"></i></button>
+                        </p>
+                    </div>
+                    <button (click)="updateStackPosition(stack, 'RIGHT')" class="col-1"
+                        [disabled]="isLastStackInArray(stack.id!)" style="padding: 0px; margin-right: 15px;"><i
+                            class="bi bi-arrow-right-square"></i></button>
                 </div>
-                <button (click)="updateStackPosition(stack, 'RIGHT')" class="col-1"
-                    [disabled]="isLastStackInArray(stack.id!)" style="padding: 0px; margin-right: 15px;"><i
-                        class="bi bi-arrow-right-square"></i></button>
-            </div>
-            <div cdkDropList [cdkDropListData]="findTasksByStack(stack.id!)" class="example-list"
-                (cdkDropListDropped)="updateTaskPositionAndSync($event, stack.id!)">
-                <div class="example-box" style="height: 3.5rem; position: relative;"
-                    *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag (cdkDragStarted)="draggedTask = task">
-                    <button style="width: 100%; height: 100%; border: 0px; background-color: white"
-                        (click)="openTaskDialog(task)">
-                        <h3>{{ task.title }}</h3>
-                    </button>
+                <div cdkDropList [cdkDropListData]="findTasksByStack(stack.id!)" class="example-list"
+                    (cdkDropListDropped)="updateTaskPositionAndSync($event, stack.id!)">
+                    <div class="example-box" style="height: 3.5rem; position: relative;"
+                        *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag (cdkDragStarted)="draggedTask = task">
+                        <button style="width: 100%; height: 100%; border: 0px; background-color: white"
+                            (click)="openTaskDialog(task)">
+                            <h3>{{ task.title }}</h3>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div *ngIf="showNewStackButton==true">
-            <button type="button" class="btn btn-light" (click)="changeInsertMode()">
-                <i class="bi bi-plus-square"></i> <b> Nova stack</b>
-            </button>
-        </div>
-        <div *ngIf="isInsertingNewStack==true">
-            <input type="text" [(ngModel)]="newStackName">
-            <button type="button" class="btn btn-success" (click)="saveNewStack()"> <i class="bi bi-check-square"
-                    style="font-size: 20px;"></i></button>
+            <div *ngIf="showNewStackButton==true" class="example-container">
+                <div class="row" style="padding-left: 15px; padding-right: 15px"><button type="button"
+                        class="btn btn-light" (click)="changeInsertMode()">
+                        <i class="bi bi-plus-square"></i> <b> Nova stack</b>
+                    </button></div>
+            </div>
+            <div *ngIf="isInsertingNewStack==true" class="example-container">
+                <div class="row" style="padding-left: 15px;">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <input type="text" [(ngModel)]="newStackName">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-success" (click)="saveNewStack()"> <i
+                                class="bi bi-check-square" style="font-size: 20px;"></i></button>
 
-            <button type="button" class="btn btn-light" (click)="changeInsertMode()"><i class="bi bi-x-square"
-                    style="font-size: 20px;"></i></button>
+                        <button type="button" class="btn btn-light" (click)="changeInsertMode()"><i
+                                class="bi bi-x-square" style="font-size: 20px;"></i></button>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
-</body>
+</div>
