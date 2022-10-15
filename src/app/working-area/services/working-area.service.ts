@@ -6,6 +6,7 @@ import { DeliveryDate } from 'src/app/shared/models/delivery-date.model';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { NotificationConfiguration } from 'src/app/shared/models/notification-configuration.model';
 import { Stack } from 'src/app/shared/models/stack.model';
+import { Tag } from 'src/app/shared/models/tag.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { environment } from 'src/environments/environment';
 
@@ -115,5 +116,9 @@ export class WorkingAreaService {
       title: notificationConfiguration.title,
       message: notificationConfiguration.message
     });
+  }
+
+  findAllTagsByBoardId(boardId: string): Observable<Array<Tag>> {
+    return this.httpClient.get<Array<Tag>>(environment.apiUrl + "/tags/find-all-by-board/" + boardId);
   }
 }

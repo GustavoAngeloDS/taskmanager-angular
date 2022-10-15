@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/shared/enums/action';
 import { InternalTask } from 'src/app/shared/models/internal-task.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
+import { Tag } from 'src/app/shared/models/tag.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { DialogTaskDeliveryDateComponent } from '../dialog-task-delivery-date/dialog-task-delivery-date.component';
@@ -22,6 +23,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
   Action = Action;
 
   newInternalTask: InternalTask = new InternalTask();
+  availableTags!: Array<Tag>;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private matDialog: MatDialog, private notificationService: NotificationService, private workingAreaService: WorkingAreaService) {
     super(true, Action.VIEWING);
@@ -30,12 +32,19 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
 
   ngOnInit(): void {
     this.findTask();
+    this.findBoardTags();
   }
 
   private findTask() {
     this.workingAreaService.findTaskById(this.data.boardId, this.data.taskId).subscribe({
       next: (task) => this.setTaskAndInternalTasks(task)
     })
+  }
+
+  private findBoardTags() {
+    this.workingAreaService.findAllTagsByBoardId(this.data.boardId).subscribe({
+      next: (tagList: Array<Tag>) => this.availableTags = tagList
+    });
   }
 
   updateTask() {
