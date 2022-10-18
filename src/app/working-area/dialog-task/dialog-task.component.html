@@ -105,12 +105,15 @@
                             Etiquetas
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Criar nova etiqueta</a></li>
+                            <li><a class="dropdown-item" (click)="openDialogTagsManagement()" style="cursor: pointer;">Gerenciar etiquetas</a>
+                            </li>
                             <hr>
-                            <li><b><p>{{task.tag!.name}}</p></b></li>
+                            <li *ngIf="task.tag!.id != undefined">
+                                <p class="dropdown-item"><b>{{task.tag!.name}}</b><i class="bi bi-check-lg"></i></p>
+                            </li>
                             <hr>
                             <div *ngFor="let tag of availableTags">
-                                <li><a class="dropdown-item" href="#">{{tag.name}}</a></li>
+                                <li *ngIf="tag.id! != task.tag!.id!" style="cursor: pointer;"><a class="dropdown-item" (click)="updateTaskTag(tag.id!)">{{tag.name}}</a></li>
                             </div>
                         </ul>
                     </div>

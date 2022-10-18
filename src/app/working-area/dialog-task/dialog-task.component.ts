@@ -6,6 +6,7 @@ import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model
 import { Tag } from 'src/app/shared/models/tag.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { DialogTagsManagementComponent } from '../dialog-tags-management/dialog-tags-management.component';
 import { DialogTaskDeliveryDateComponent } from '../dialog-task-delivery-date/dialog-task-delivery-date.component';
 import { DialogTaskMembersComponent } from '../dialog-task-members/dialog-task-members.component';
 import { DialogTaskNotifConfigComponent } from '../dialog-task-notif-config/dialog-task-notif-config.component';
@@ -162,12 +163,34 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     dialog.componentInstance.dialogId = dialog.id;
   }
 
+  openDialogTagsManagement(): void {
+    const dialog = this.matDialog.open(DialogTagsManagementComponent, {
+      data: {
+        boardId: this.data.boardId
+      }
+    });
+    dialog.componentInstance.dialogId = dialog.id;
+    dialog.afterClosed().subscribe({
+      complete: () => this.findBoardTags()
+    })
+  }
+
   completeTask(): void {
     this.task.deliveryDate!.accomplished = true;
     this.workingAreaService.updateTaskDeliveryDate(this.data.boardId, this.task.id!, this.task.deliveryDate!).subscribe({
       complete: () => {
         this.notificationService.showSuccess("Data de entrega atendida")
         this.findTask()
+      }
+    });
+  }
+
+  updateTaskTag(tagId: string): void {
+    this.workingAreaService.updateTaskTag(this.data.boardId, this.task.id!, tagId).subscribe({
+      complete: () => {
+        this.notificationService.showSuccess("Etiqueta vinculada");
+        this.findTask();
+        this.findBoardTags();
       }
     });
   }

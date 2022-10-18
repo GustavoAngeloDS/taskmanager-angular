@@ -1,0 +1,40 @@
+<div class="container" style="width: 1000px; height: 335px;" *ngIf="availableTags != undefined">
+    <div class="row">
+        <div class="col" style="padding-left: 0px;">
+            <div class="row">
+                <h2 style="text-align: center;">Etiquetas cadastradas</h2>
+            </div>
+            <div class="col" style="overflow-y:scroll;overflow-x:hidden; height: 240px;">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let tag of availableTags" style="padding-right: 0px;">
+                        <label>{{tag.name }}</label>
+
+                        <button type="button" class="btn btn-secondary" (click)="openDialogTagEdit(tag)"><i
+                                class="bi bi-pencil"></i></button>
+
+                        <button type="button" class="btn btn-secondary" (click)="openDialogTagDelete(tag)"><i
+                                class="bi bi-trash3"></i></button>
+
+                    </li>
+                </ul>
+                <div *ngIf="availableTags.length <= 0">
+                    Não existem etiquetas cadastradas
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <h2 style="text-align: center;">Incluir nova etiqueta</h2>
+            </div>
+            <p>Etiquetas são marcações que podem ser vinculadas em tarefas</p>
+            <div class="row">
+                <label>Nome</label>
+                <input type="text" class="form-control" [(ngModel)]="newTag.name">
+            </div>
+            <br><br><br><br>
+            <div class="row" style=" bottom: 0px">
+                <button type="button" class="btn btn-success" (click)="saveNewTag()">Cadastrar etiqueta</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -119,6 +119,26 @@ export class WorkingAreaService {
   }
 
   findAllTagsByBoardId(boardId: string): Observable<Array<Tag>> {
-    return this.httpClient.get<Array<Tag>>(environment.apiUrl + "/tags/find-all-by-board/" + boardId);
+    return this.httpClient.get<Array<Tag>>(this.baseBackendUrl + boardId + "/tags");
+  }
+
+  saveNewTag(boardId: string, tag: Tag): Observable<Tag> {
+    return this.httpClient.post<Tag>(this.baseBackendUrl + boardId + "/tags", {
+      name: tag.name
+    });
+  }
+
+  updateTag(boardId: string, tagId: string, tag: Tag): Observable<Tag> {
+    return this.httpClient.put<Tag>(this.baseBackendUrl + boardId + "/tags/" + tagId, {
+      name: tag.name
+    });
+  }
+
+  removeTag(boardId: string, tagId: string): Observable<void> {
+    return this.httpClient.delete<void>(this.baseBackendUrl + boardId + "/tags/" + tagId)
+  }
+
+  updateTaskTag(boardId: string, taskId: string, tagId: string): Observable<Task> {
+    return this.httpClient.put<Task>(this.baseBackendUrl + boardId + "/tasks/" + taskId + "/update-tag/" + tagId, {});
   }
 }

@@ -1,0 +1,16 @@
+<div class="container" style="width: 300px;" *ngIf="tag!= undefined">
+    <div class="row">
+        <h2 style="text-align: center;">Editar etiqueta</h2>
+    </div>
+    <div class="row">
+        <label>Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="tag.name">
+    </div>
+    <br>
+    <div class="row">
+        <hr>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-success" (click)="updateTag()">Salvar</button>
+    </div>
+</div>
