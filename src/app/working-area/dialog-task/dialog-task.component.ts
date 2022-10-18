@@ -171,7 +171,10 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     });
     dialog.componentInstance.dialogId = dialog.id;
     dialog.afterClosed().subscribe({
-      complete: () => this.findBoardTags()
+      complete: () => {
+        this.findTask();
+        this.findBoardTags();
+      }
     })
   }
 
