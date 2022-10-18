@@ -8,6 +8,7 @@ import { Board } from 'src/app/shared/models/board.model';
 import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model';
 import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model'
+import { environment } from 'src/environments/environment';
 import { DialogTaskComponent } from '../dialog-task/dialog-task.component';
 import { ModalStackEditComponent } from '../modal-stack-edit/modal-stack-edit.component';
 import { ModalTaskComponent } from '../modal-task/modal-task.component';
@@ -29,7 +30,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
 
   draggedTask!: Task;
 
-  reloadInterval: number = 3;
+  reloadInterval: number = environment.boardPanelRefreshTimeInSeconds;
 
   constructor(private matDialog: MatDialog, private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
     super(false, Action.EDITING);

@@ -20,12 +20,16 @@
                 </div>
                 <div cdkDropList [cdkDropListData]="findTasksByStack(stack.id!)" class="example-list"
                     (cdkDropListDropped)="updateTaskPositionAndSync($event, stack.id!)">
-                    <div class="example-box" style="height: 3.5rem; position: relative;"
+                    <div class="example-box" style="height: 4.5rem; position: relative;"
                         *ngFor="let task of findTasksByStack(stack.id!)" cdkDrag (cdkDragStarted)="draggedTask = task">
-                        <button style="width: 100%; height: 100%; border: 0px; background-color: white"
+                        <button style="width: 100%; height: 100%; border: 0px; background-color: white;"
                             (click)="openTaskDialog(task)">
-                            <h3>{{ task.title }}</h3>
+                            <h3 style="margin-bottom: 0px;">{{ task.title }}</h3>
+                            <p *ngIf="task.tag != undefined" style="text-align: right;">
+                                <b>{{task.tag!.name!}}</b>
+                            </p>
                         </button>
+
                     </div>
                 </div>
             </div>

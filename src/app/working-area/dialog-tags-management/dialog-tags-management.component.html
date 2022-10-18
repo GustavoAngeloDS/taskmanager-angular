@@ -7,18 +7,22 @@
             <div class="col" style="overflow-y:scroll;overflow-x:hidden; height: 240px;">
                 <ul class="list-group">
                     <li class="list-group-item" *ngFor="let tag of availableTags" style="padding-right: 0px;">
-                        <label>{{tag.name }}</label>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p style="margin-top: 10px;">{{tag.name}}</p>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-secondary" (click)="openDialogTagEdit(tag)"><i
+                                        class="bi bi-pencil"></i></button>
 
-                        <button type="button" class="btn btn-secondary" (click)="openDialogTagEdit(tag)"><i
-                                class="bi bi-pencil"></i></button>
-
-                        <button type="button" class="btn btn-secondary" (click)="openDialogTagDelete(tag)"><i
-                                class="bi bi-trash3"></i></button>
-
+                                <button type="button" class="btn btn-secondary" (click)="openDialogTagDelete(tag)"><i
+                                        class="bi bi-trash3"></i></button>
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <div *ngIf="availableTags.length <= 0">
-                    Não existem etiquetas cadastradas
+                    <p class="text-center">Não existem etiquetas cadastradas</p>
                 </div>
             </div>
         </div>
@@ -26,7 +30,7 @@
             <div class="row">
                 <h2 style="text-align: center;">Incluir nova etiqueta</h2>
             </div>
-            <p>Etiquetas são marcações que podem ser vinculadas em tarefas</p>
+            <p>Etiquetas são marcações que podem ser inseridas em tarefas como uma forma de tipagem.</p>
             <div class="row">
                 <label>Nome</label>
                 <input type="text" class="form-control" [(ngModel)]="newTag.name">

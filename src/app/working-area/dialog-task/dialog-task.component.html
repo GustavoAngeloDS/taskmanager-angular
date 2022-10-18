@@ -114,13 +114,13 @@
                             </li>
                             <hr>
                             <div *ngFor="let tag of availableTags">
-                                <li *ngIf="task.tag != undefined && (tag.id! != task.tag!.id!)" style="cursor: pointer;"><a class="dropdown-item"
+                                <li *ngIf="task.tag != undefined && (tag.id! != task.tag!.id!)"
+                                    style="cursor: pointer;"><a class="dropdown-item"
                                         (click)="updateTaskTag(tag.id!)">{{tag.name}}</a></li>
                             </div>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
