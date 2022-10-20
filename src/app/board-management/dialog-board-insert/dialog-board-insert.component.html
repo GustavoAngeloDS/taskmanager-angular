@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" name="name" [(ngModel)]="newBoard.name" #name="ngModel"
                     minlength="5" required>
                 <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
-                    O nome do Board informado é inválido. (Deve conter no mínimo 5 caracteres)
+                    O nome do nome informado é inválido. (Deve conter no mínimo 5 caracteres)
                 </div>
             </div>
         </div>
