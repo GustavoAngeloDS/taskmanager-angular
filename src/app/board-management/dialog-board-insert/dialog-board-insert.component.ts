@@ -6,11 +6,11 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { BoardManagementService } from '../services/board-management.service';
 
 @Component({
-  selector: 'app-modal-board-insert',
-  templateUrl: './modal-board-insert.component.html',
-  styleUrls: ['./modal-board-insert.component.css']
+  selector: 'app-dialog-board-insert',
+  templateUrl: './dialog-board-insert.component.html',
+  styleUrls: ['./dialog-board-insert.component.css']
 })
-export class ModalBoardInsertComponent implements OnInit {
+export class DialogBoardInsertComponent implements OnInit {
 
   @ViewChild('formNewBoard')
   formNewBoard!: NgForm;

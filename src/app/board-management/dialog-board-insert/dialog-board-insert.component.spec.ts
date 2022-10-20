@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalBoardInsertComponent } from './modal-board-insert.component';
+import { DialogBoardInsertComponent } from './dialog-board-insert.component';
 
-describe('ModalBoardInsertComponent', () => {
-  let component: ModalBoardInsertComponent;
-  let fixture: ComponentFixture<ModalBoardInsertComponent>;
+describe('DialogBoardInsertComponent', () => {
+  let component: DialogBoardInsertComponent;
+  let fixture: ComponentFixture<DialogBoardInsertComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalBoardInsertComponent ]
+      declarations: [ DialogBoardInsertComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalBoardInsertComponent);
+    fixture = TestBed.createComponent(DialogBoardInsertComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

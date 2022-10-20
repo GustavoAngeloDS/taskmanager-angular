@@ -9,7 +9,7 @@ import { SessionService } from 'src/app/shared/services/session.service';
 import { DialogGeneralManagementComponent } from '../dialog-general-management/dialog-general-management.component';
 import { DialogBoardDeleteComponent } from '../dialog-board-delete/dialog-board-delete.component';
 import { ModalBoardDetailsComponent } from '../modal-board-details/modal-board-details.component';
-import { ModalBoardInsertComponent } from '../modal-board-insert/modal-board-insert.component';
+import { DialogBoardInsertComponent } from '../dialog-board-insert/dialog-board-insert.component';
 import { BoardManagementService } from '../services/board-management.service';
 
 @Component({
@@ -54,7 +54,7 @@ export class BoardListComponent extends PageBehavior implements OnInit {
   }
 
   openModalBoardInsert(): void {
-    const dialog = this.matDialog.open(ModalBoardInsertComponent);
+    const dialog = this.matDialog.open(DialogBoardInsertComponent);
     dialog.componentInstance.dialogId = dialog.id;
     dialog.afterClosed().subscribe({ complete: () => this.loadBoards() });
   }
