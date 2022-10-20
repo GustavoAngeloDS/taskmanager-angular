@@ -1,60 +1,86 @@
-<div class="modal-header" style="width: 700px;">
+<div class="container-fluid" style="width: 700px;">
     <h3 class="modal-title"><b>Novo usuário</b></h3>
 </div>
+<div class="row">
+    <hr>
+</div>
 <div class="modal-body">
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">
-            Usuário
-        </label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="newUser.username" name="username" required>
+    <form #formNewUser="ngForm">
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">
+                Usuário
+            </label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="newUser.username" name="username"
+                    #username="ngModel" minlength="8" maxlength="15" required>
+
+                <div class="alert alert-danger" *ngIf="username.errors && (username.dirty || username.touched)">
+                    O nome de usuário informado é inválido. (Deve conter entre 8 e 15 caracteres).
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">
-            Como quer ser chamado?
-        </label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="newUser.nickName" name="nickName" required>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">
+                Como quer ser chamado?
+            </label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="newUser.nickName" name="nickName"
+                    #nickName="ngModel" minlength="2" maxlength="15" required>
+
+                <div class="alert alert-danger" *ngIf="nickName.errors && (nickName.dirty || nickName.touched)">
+                    O apelido informado é inválido. (Deve conter entre 2 e 15 caracteres).
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">
-            Número de Telefone
-        </label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" mask="(00) 0 0000-0000" [showMaskTyped]="true"
-                [(ngModel)]="newUser.phoneNumber" name="phoneNumber" required>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">
+                Número de Telefone
+            </label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" mask="(00) 0 0000-0000" [showMaskTyped]="true"
+                    #phoneNumber="ngModel" minlength="11" [(ngModel)]="newUser.phoneNumber" name="phoneNumber" required>
+
+                <div class="alert alert-danger"
+                    *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)">
+                    O telefone informado é inválido. (Deve conter 11 caracteres: (XX) X XXXX-XXXX).
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">
-            Endereço de e-mail
-        </label>
-        <div class="col-sm-6">
-            <input type="email" class="form-control" placeholder="seu.email@email.com"
-                [(ngModel)]="newUser.email" name="email" required>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">
+                Endereço de e-mail
+            </label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="newUser.email" #email="ngModel" name="email"
+                    required>
+
+                <div class="alert alert-danger"
+                    *ngIf="(!newUser.email?.includes('@') && (email.dirty || email.touched)) || email.errors && (email.dirty || email.touched)">
+                    O e-mail preenchido é inválido.
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">
-            Senha
-        </label>
-        <div class="col-sm-6">
-            <input type="password" class="form-control" [(ngModel)]="newUser.password" required name="password">
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">
+                Senha
+            </label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" [(ngModel)]="newUser.password" #password="ngModel"
+                    minlength="6" required name="password">
+
+                <div class="alert alert-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+                    A senha informada é inválida. (Deve conter no mínimo 6 caracteres)
+                </div>
+            </div>
         </div>
-    </div>
-    <br>
-    <p></p>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" required>
-        <label class="form-check-label">
-            Confirmo que aceito receber emails da plataforma <b>TaskManager</b>
-        </label>
-    </div>
-    <br>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="saveNewUser()">Salvar</button>
-        <button type="button" class="btn btn-outline-dark" (click)="closeDialog()">Cancelar</button>
-    </div>
+        <br>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-success" (click)="saveNewUser()"
+                [disabled]="formNewUser.form.invalid || (newUser.email != undefined && !newUser.email!.includes('@'))">Salvar</button>
+            <button type="button" class="btn btn-outline-dark" (click)="closeDialog()">Cancelar</button>
+        </div>
+    </form>
 </div>

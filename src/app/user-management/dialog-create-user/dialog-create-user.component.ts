@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/shared/models/user.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
@@ -10,6 +11,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./dialog-create-user.component.css']
 })
 export class DialogCreateUserComponent implements OnInit {
+
+  @ViewChild('formNewUser')
+  formNewUser!: NgForm;
 
   newUser!: User;
   dialogId!: string;
