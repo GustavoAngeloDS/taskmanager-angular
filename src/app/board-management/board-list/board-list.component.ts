@@ -54,8 +54,9 @@ export class BoardListComponent extends PageBehavior implements OnInit {
   }
 
   openModalBoardInsert(): void {
-    const modal = this.modalService.open(ModalBoardInsertComponent);
-    modal.closed.subscribe({ complete: () => this.loadBoards() });
+    const dialog = this.matDialog.open(ModalBoardInsertComponent);
+    dialog.componentInstance.dialogId = dialog.id;
+    dialog.afterClosed().subscribe({ complete: () => this.loadBoards() });
   }
 
   filterBoardList(): Array<Board> {

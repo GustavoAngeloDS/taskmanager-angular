@@ -1,14 +1,19 @@
-<div class="modal-header">
-    <h4> Novo Board </h4>
-</div>
-<div class="modal-body">
-    <div>
+<div class="container-fluid" style="width: 500px">
+    <h2>Novo Board</h2>
+    <div class="row">
+        <hr />
+    </div>
+    <form #formNewBoard="ngForm">
         <div class="row">
             <div class="col">
                 <p>Nome:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="board.name">
+                <input type="text" class="form-control" name="name" [(ngModel)]="newBoard.name" #name="ngModel"
+                    minlength="5" required>
+                <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
+                    O nome do Board informado é inválido. (Deve conter no mínimo 5 caracteres)
+                </div>
             </div>
         </div>
         <div class="row">
@@ -16,12 +21,17 @@
                 <p>Descrição:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="board.description">
+                <input type="text" class="form-control" [(ngModel)]="newBoard.description">
             </div>
         </div>
-    </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="saveBoard()">Salvar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+        <br>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-success" [disabled]="formNewBoard.form.invalid"
+                (click)="saveBoard()">Salvar</button>
+            <button type="button" class="btn btn-outline-dark" (click)="closeDialog()">Cancelar</button>
+        </div>
+    </form>
 </div>
