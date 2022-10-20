@@ -1,25 +1,39 @@
 <body class="container-fluid">
-    <form #formLogin class="login-form">
-
+    <form #formLogin="ngForm" class="login-form">
         <div class="col">
             <div class="row">
                 <label class="form-label" style="font-size: 20px; color: #fff ;"><b>Usuario</b></label>
-                <input [(ngModel)]="username" type="text" class="form-control" id="username" name="username" required>
-            </div><br>
+                <input [(ngModel)]="user.username" #username="ngModel" type="text" class="form-control" id="username"
+                    name="username" required>
+            </div>
+            <span *ngIf="username.errors && (username.dirty || username.touched)" style="text-align: center;">
+                <div class="alert alert-danger">
+                    Preencha a usuário
+                </div>
+            </span>
+            <br>
             <div class="row">
                 <label class="form-label" style="font-size: 20px; color: #fff "><b>Senha</b></label>
-                <input [(ngModel)]="password" type="password" class="form-control" id="password" name="password"
-                    required>
-            </div><br>
-            <div class="row">
-                <button type="submit" class="btn btn-secondary" (click)="login()">Entrar</button>
+                <input [(ngModel)]="user.password" #password="ngModel" type="password" class="form-control"
+                    id="password" name="password" required>
             </div>
-            <p></p>
-            <div class="row text-center" (click)="openModalNewUser()" style="cursor: pointer;">
-                <b>
-                    <h2>Criar uma nova conta</h2>
-                </b>
+            <span *ngIf="password.errors && (password.dirty || password.touched)" style="text-align: center;">
+                <div class="alert alert-danger">
+                    Preencha a senha
+                </div>
+            </span>
+            <br>
+
+
+            <div class="row">
+                <button type="submit" [disabled]="formLogin.form.invalid" class="btn btn-secondary"
+                    (click)="login()">Entrar</button>
+                <p></p>
+                <button type="submit" class="btn btn-light" (click)="openModalNewUser()">Criar uma nova conta</button>
             </div>
         </div>
     </form>
+    <!-- <div class="alert alert-danger" *ngIf="password.errors && (password.dirty || password.touched)">
+        A senha informada é inválida. (Deve conter no mínimo 6 caracteres)
+    </div> -->
 </body>

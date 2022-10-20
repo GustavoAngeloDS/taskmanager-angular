@@ -11,7 +11,7 @@ export class NotificationService {
   showWarning(message: string): void {
     this.toastr.warning(message, 'Aviso', {
       timeOut: 10000,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-center',
       progressBar: true
     })
   }
