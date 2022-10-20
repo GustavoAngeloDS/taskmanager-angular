@@ -16,12 +16,12 @@ export class DialogMembersManagementComponent implements OnInit {
 
   dialogId!: string;
   board!: Board;
-  newMemberMail!: string;
+  newUserToInclude!: User;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private matDialog: MatDialog, private boardManagementService: BoardManagementService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.newMemberMail = "";
+    this.newUserToInclude = new User();
     this.findBoard(this.data.boardId);
   }
 
@@ -32,7 +32,7 @@ export class DialogMembersManagementComponent implements OnInit {
   }
 
   sendInvite() {
-    let boardInvitation: BoardInvitation = new BoardInvitation(undefined, this.board.id!, this.newMemberMail);
+    let boardInvitation: BoardInvitation = new BoardInvitation(undefined, this.board.id!, this.newUserToInclude.email!);
     this.boardManagementService.sendBoardInvitation(boardInvitation).subscribe({
       next: (boardInvitation: BoardInvitation) => {
         if (boardInvitation.id == undefined) {
@@ -40,13 +40,8 @@ export class DialogMembersManagementComponent implements OnInit {
         } else {
           this.notificationService.showSuccess("Convite enviado ao usuário");
         }
-        this.cleanInput();
       }
     });
-  }
-
-  cleanInput() {
-    this.newMemberMail = "";
   }
 
   openDialogMemberDelete(user: User) {

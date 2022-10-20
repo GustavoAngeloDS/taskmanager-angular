@@ -1,44 +1,55 @@
-<div class="container" style="width: 1000px; height: 335px;" *ngIf="board != undefined">
+<div class="container" style="width: 1000px; height: 400px;" *ngIf="board != undefined">
     <div class="row">
         <h1 style="padding-left: 0px;"><b>{{board.name}} - Gerenciamento de membros</b></h1>
+        <hr>
     </div>
-    <div class="row">
-        <div class="col" style="padding-left: 0px;">
-            <div class="row">
-                <h2 style="text-align: center;">Membros do quadro</h2>
+    <form #formBoardManagement="ngForm">
+        <div class="row">
+            <div class="col" style="padding-left: 0px;">
+                <div class="row">
+                    <h2 style="text-align: center;">Membros do quadro</h2>
+                </div>
+                <div class="col" style="overflow-y:scroll;overflow-x:hidden; height: 240px;">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let user of board.memberList" style="padding-right: 0px;">
+                            <label style="margin-right: 44%;">{{ user.username }} - {{
+                                user.email }}</label><button type="button" class="btn btn-secondary"
+                                [disabled]="board.owner!.id! == user.id! " style="align-self: flex-end;"
+                                (click)="openDialogMemberDelete(user)"><i class="bi bi-person-x-fill"></i></button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col" style="overflow-y:scroll;overflow-x:hidden; height: 240px;">
-                <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let user of board.memberList" style="padding-right: 0px;"><label
-                            style="margin-right: 44%;">{{ user.username }} - {{
-                            user.email }}</label><button type="button" class="btn btn-secondary"
-                            [disabled]="board.owner!.id! == user.id! " style="align-self: flex-end;"
-                            (click)="openDialogMemberDelete(user)"><i class="bi bi-person-x-fill"></i></button>
-                    </li>
-                </ul>
+            <div class="col">
+                <div class="row">
+                    <h2 style="text-align: center;">Incluir novo membro</h2>
+                </div>
+                <div class="row">
+                    <p><b>Atenção</b>: apenas usuários cadastrados na plataforma TaskManager poderão ser incluidos como
+                        membros de um quadro.</p>
+                    <p>Caso o email informado não percença a um usuário cadastrado, o vínculo ao quadro não será
+                        efetivado.
+                    </p>
+                </div>
+                <div class="row">
+                    <hr>
+                </div>
+                <div class="row">
+                    <label>Email</label>
+                    <input type="text" class="form-control" [(ngModel)]="newUserToInclude.email" name="email"
+                        #email="ngModel" required>
+                    <div class="alert alert-danger"
+                        *ngIf="(!newUserToInclude.email?.includes('@') && (email.dirty || email.touched)) || email.errors && (email.dirty || email.touched)">
+                        O e-mail preenchido é inválido.
+                    </div>
+                </div>
+                <p></p>
+                <div class="row">
+                    <button type="button" class="btn btn-success"
+                        [disabled]="formBoardManagement.form.invalid || (newUserToInclude.email != undefined && !newUserToInclude.email!.includes('@'))"
+                        (click)="sendInvite()">Incluir membro</button>
+                </div>
             </div>
         </div>
-        <div class="col">
-            <div class="row">
-                <h2 style="text-align: center;">Incluir novo membro</h2>
-            </div>
-            <div class="row">
-                <p><b>Atenção</b>: apenas usuários cadastrados na plataforma TaskManager poderão ser incluidos como
-                    membros de um quadro.</p>
-                <p>Caso o email informado não percença a um usuário cadastrado, o vínculo ao quadro não será efetivado
-                </p>
-            </div>
-            <div class="row">
-                <hr>
-            </div>
-            <div class="row">
-                <label>Email</label>
-                <input type="text" class="form-control" [(ngModel)]="newMemberMail">
-            </div>
-            <br>
-            <div class="row">
-                <button type="button" class="btn btn-success" (click)="sendInvite()">Incluir membro</button>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
