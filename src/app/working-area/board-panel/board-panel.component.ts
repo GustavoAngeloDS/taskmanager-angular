@@ -26,7 +26,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   showNewStackButton: boolean = true;
   isInsertingNewStack: boolean = false;
 
-  newStackName?: string;
+  newStack!: Stack;
 
   draggedTask!: Task;
 
@@ -35,6 +35,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   constructor(private matDialog: MatDialog, private modalService: NgbModal, private workingAreaService: WorkingAreaService, private route: ActivatedRoute) {
     super(false, Action.EDITING);
     this.draggedTask = new Task();
+    this.newStack = new Stack();
   }
 
   ngOnInit(): void {
@@ -103,7 +104,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   }
 
   saveNewStack(): void {
-    this.workingAreaService.saveNewStack(this.board.id!, new Stack(undefined, this.newStackName, undefined)).subscribe({
+    this.workingAreaService.saveNewStack(this.board.id!, new Stack(undefined, this.newStack.name, undefined)).subscribe({
       complete: () => this.findBoard(this.board.id!)
     });
     this.changeInsertMode();
@@ -122,7 +123,7 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
   }
 
   clearInputFields(): void {
-    this.newStackName = "";
+    this.newStack.name = "";
   }
 
   updateTaskPositionAndSync(event: CdkDragDrop<Task[]>, newStackId?: string) {

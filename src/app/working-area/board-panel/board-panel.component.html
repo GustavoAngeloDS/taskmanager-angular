@@ -29,7 +29,6 @@
                                 <b>{{task.tag!.name!}}</b>
                             </p>
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -40,21 +39,24 @@
                     </button></div>
             </div>
             <div *ngIf="isInsertingNewStack==true" class="example-container">
-                <div class="row" style="padding-left: 15px;">
-                    <div class="col-md-8">
-                        <div class="row">
-                            <input type="text" [(ngModel)]="newStackName">
+                <form #formNewStack="ngForm">
+                    <div class="row" style="padding-left: 15px;">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <input type="text" name="stackname" #stackName="ngModel" [(ngModel)]="newStack.name"
+                                    minlength="2" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-success" [disabled]="formNewStack.form.invalid"
+                                (click)="saveNewStack()"> <i class="bi bi-check-square"
+                                    style="font-size: 20px;"></i></button>
+
+                            <button type="button" class="btn btn-light" (click)="changeInsertMode()"><i
+                                    class="bi bi-x-square" style="font-size: 20px;"></i></button>
                         </div>
                     </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-success" (click)="saveNewStack()"> <i
-                                class="bi bi-check-square" style="font-size: 20px;"></i></button>
-
-                        <button type="button" class="btn btn-light" (click)="changeInsertMode()"><i
-                                class="bi bi-x-square" style="font-size: 20px;"></i></button>
-                    </div>
-                </div>
-
+                </form>
             </div>
         </div>
     </div>
