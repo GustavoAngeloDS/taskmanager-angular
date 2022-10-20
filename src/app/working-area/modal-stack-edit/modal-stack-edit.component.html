@@ -1,8 +1,8 @@
 <div class="modal-header">
     <h4> Editar Stack </h4>
 </div>
-<div class="modal-body">
-    <div>
+<form #formEditStack="ngForm">
+    <div class="modal-body">
         <div class="row">
             <div class="col-2">
                 <p>Id:</p>
@@ -24,12 +24,19 @@
                 <p>Nome:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="stack.name">
+                <input type="text" class="form-control" name="stackName" #stackName="ngModel" [(ngModel)]="stack.name"
+                    minlength="2" required>
+
+                <div class="alert alert-danger" *ngIf="stackName.errors && (stackName.dirty || stackName.touched)">
+                    O nome informado é inválido. (Deve conter no mínimo 2 caracteres)
+                </div>
             </div>
+
         </div>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="updateStack()">Salvar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" [disabled]="formEditStack.form.invalid"
+            (click)="updateStack()">Salvar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+    </div>
+</form>
