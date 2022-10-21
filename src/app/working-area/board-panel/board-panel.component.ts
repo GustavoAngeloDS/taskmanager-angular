@@ -164,7 +164,9 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     modal.componentInstance.screenAction = Action.INSERTING;
     modal.componentInstance.stackId = stackId;
 
-    modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
+    modal.closed.subscribe(task => {
+      if (task) this.openTaskDialog(task);
+    });
   }
 
   openTaskDialog(task: Task): void {

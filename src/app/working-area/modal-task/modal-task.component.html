@@ -1,8 +1,9 @@
 <div class="modal-header">
-    <h4 *ngIf="screenAction == Action.INSERTING"> Nova Task </h4>
+    <h4> Nova Task </h4>
 </div>
-<div class="modal-body">
-    <div *ngIf="screenAction == Action.INSERTING">
+<form #formNewTask="ngForm">
+    <div class="modal-body">
+
         <div class="row">
             <div class="col-2">
                 <p>Id:</p>
@@ -16,7 +17,11 @@
                 <p>Título:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="newTask.title">
+                <input type="text" class="form-control" [(ngModel)]="newTask.title" name="title" #title="ngModel"
+                    required>
+                <div class="alert alert-danger" *ngIf="title.errors && (title.dirty || title.touched)">
+                    O título da task informado é inválido. (Deve conter no mínimo 1 caractere)
+                </div>
             </div>
         </div>
         <div class="row">
@@ -24,12 +29,13 @@
                 <p>Descrição:</p>
             </div>
             <div class="col">
-                <input type="text" class="form-control" [(ngModel)]="newTask.description">
+                <input type="text" class="form-control" [(ngModel)]="newTask.description" name="description">
             </div>
         </div>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="salvarTask()">Salvar</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
-</div>
+    <div class="modal-footer">
+        <button type="button" [disabled]="formNewTask.form.invalid" class="btn btn-success"
+            (click)="salvarTask()">Salvar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cancelar</button>
+    </div>
+</form>

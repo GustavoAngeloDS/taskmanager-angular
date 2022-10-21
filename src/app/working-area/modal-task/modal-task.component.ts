@@ -12,9 +12,6 @@ import { WorkingAreaService } from '../services/working-area.service';
 })
 export class ModalTaskComponent implements OnInit {
 
-  @Input() screenAction!: Action;
-  Action = Action
-
   @Input() boardId!: string;
   @Input() task!: Task;
   @Input() stackId!: string;
@@ -30,22 +27,13 @@ export class ModalTaskComponent implements OnInit {
   }
 
   salvarTask(): void {
-    if (this.screenAction == Action.EDITING) {
-      this.workingAreaService.updateTask(this.boardId, this.task!).subscribe({
-        complete: () => {
-          this.notificationService.showSuccess("Task atualizada");
-          this.activeModal.close();
-        },
-        error: (error) => this.notificationService.showError(error.message)
-      });
-    } else {
-      this.workingAreaService.saveNewTask(this.boardId, this.stackId, this.newTask).subscribe({
-        complete: () => {
-          this.notificationService.showSuccess("Task criada com sucesso");
-          this.activeModal.close();
-        },
-        error: (error) => this.notificationService.showError(error.message)
-      });
-    }
+    this.workingAreaService.saveNewTask(this.boardId, this.stackId, this.newTask).subscribe({
+      next: (task: Task) => this.newTask = task,
+      complete: () => {
+        this.notificationService.showSuccess("Task criada com sucesso");
+        this.activeModal.close(this.newTask);
+      },
+      error: (error) => this.notificationService.showError(error.message)
+    });
   }
 }
