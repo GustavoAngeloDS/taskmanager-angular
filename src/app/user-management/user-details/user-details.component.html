@@ -37,7 +37,7 @@
             <div class="form-field col-lg-12" *ngIf="currentAction == Action.EDITING">
                 <input class="btn btn-success" type="submit" value="Salvar" [disabled]="formUserEdit.form.invalid"
                     (click)="updateUser()">
-                <input class="btn btn-light" type="submit" value="Cancelar" (click)="refreshPage()">
+                <input class="btn btn-light" type="submit" value="Cancelar" (click)="findUser()">
             </div>
         </form>
     </section>

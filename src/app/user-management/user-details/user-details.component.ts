@@ -25,6 +25,8 @@ export class UserDetailsComponent extends PageBehavior implements OnInit {
   }
 
   findUser() {
+    this.fieldSetDisabled = true;
+    this.currentAction = Action.VIEWING;
     this.userService.findUser(this.sessionService.loggedUser.id!).subscribe({
       next: (user: User) => this.user = user
     })
@@ -37,16 +39,12 @@ export class UserDetailsComponent extends PageBehavior implements OnInit {
     this.userService.updateUser(this.user).subscribe(
       () => { },
       (error) => this.notificationService.showError("Falha ao salvar dados"),
-      () => { this.refreshPage(), this.sessionService.updateLoggedUser(this.user) },
+      () => { this.findUser(), this.sessionService.updateLoggedUser(this.user) },
     );
   }
 
   editMode() {
     this.fieldSetDisabled = false;
     this.currentAction = Action.EDITING
-  }
-
-  refreshPage() {
-    window.location.reload();
   }
 }
