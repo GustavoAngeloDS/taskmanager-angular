@@ -19,10 +19,15 @@ export class UserDetailsComponent extends PageBehavior implements OnInit {
   Action = Action;
   user!: User;
 
-  constructor(private router: Router, private sessionService: SessionService, private userService: UserService, private notificationService: NotificationService) {
+  constructor(private sessionService: SessionService, private userService: UserService, private notificationService: NotificationService) {
     super(true, Action.VIEWING);
-    /*TODO: Inicializar a tela com o retorno do usuário logado pelo endpoint (usar o usersession apenas para filtrar pelo ID do usuário) */
-    this.user = sessionService.loggedUser;
+    this.findUser();
+  }
+
+  findUser() {
+    this.userService.findUser(this.sessionService.loggedUser.id!).subscribe({
+      next: (user: User) => this.user = user
+    })
   }
 
   ngOnInit(): void {

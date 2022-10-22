@@ -22,7 +22,7 @@ export class UserService {
   }
 
   findUser(userId: string): Observable<User> {
-    return this.httpClient.get(this.backendUrl + userId);
+    return this.httpClient.get(this.backendUrl + "/" + userId);
   }
 
   saveUser(user: User): Observable<User> {

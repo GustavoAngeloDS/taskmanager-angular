@@ -1,31 +1,42 @@
-<body>
+<body *ngIf="user != undefined">
     <section class="user-details">
         <h1 class="title" style="text-align: center; text-transform: uppercase;">Dados cadastrais</h1>
-        <form class="userdetails-form row">
+        <form #formUserEdit="ngForm" class="userdetails-form row">
             <fieldset [disabled]="fieldSetDisabled" class="row">
                 <div class="form-field col-lg-6">
-                    <input class="input-text js-input" type="text" name="username" [(ngModel)]="user.username" disabled>
                     <label class="label">Usuário</label>
+                    <input class="input-text js-input" type="text" name="username" [(ngModel)]="user.username" disabled>
                 </div>
                 <div class="form-field col-lg-6 ">
-                    <input name="email" class="input-text js-input" type="email" [(ngModel)]="user.email" disabled>
                     <label class="label">E-mail</label>
+                    <input name="email" class="input-text js-input" type="email" [(ngModel)]="user.email" disabled>
                 </div>
                 <div class="form-field col-lg-6 ">
-                    <input name="nickName" class="input-text js-input" type="text" [(ngModel)]="user.nickName" required>
                     <label class="label">Apelido</label>
+                    <input name="nickName" class="input-text js-input" type="text" [(ngModel)]="user.nickName"
+                        #nickName="ngModel" minlength="2" maxlength="15" required>
+
+                    <div class="alert alert-danger" *ngIf="nickName.errors && (nickName.dirty || nickName.touched)">
+                        O apelido informado é inválido. (Deve conter entre 2 e 15 caracteres).
+                    </div>
                 </div>
                 <div class=" form-field col-lg-6 ">
-                    <input name="phoneNumber" class="input-text js-input" type="text" [(ngModel)]="user.phoneNumber"
-                        required>
                     <label class="label">Telefone</label>
+                    <input name="phoneNumber" class="input-text js-input" mask="(00) 0 0000-0000" [showMaskTyped]="true"
+                        type="text" [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel" minlength="11" required>
+
+                    <div class="alert alert-danger"
+                        *ngIf="phoneNumber.errors && (phoneNumber.dirty || phoneNumber.touched)">
+                        O telefone informado é inválido. (Deve conter 11 caracteres: (XX) X XXXX-XXXX).
+                    </div>
                 </div>
             </fieldset>
             <div class="form-field col-lg-12" *ngIf="currentAction == Action.VIEWING">
                 <input class="btn btn-primary" type="submit" value="Editar dados" (click)="editMode()">
             </div>
             <div class="form-field col-lg-12" *ngIf="currentAction == Action.EDITING">
-                <input class="btn btn-success" type="submit" value="Salvar" (click)="updateUser()">
+                <input class="btn btn-success" type="submit" value="Salvar" [disabled]="formUserEdit.form.invalid"
+                    (click)="updateUser()">
                 <input class="btn btn-light" type="submit" value="Cancelar" (click)="refreshPage()">
             </div>
         </form>
