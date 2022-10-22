@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DialogBoardEditComponent } from './board-management/dialog-board-edit/dialog-board-edit.component';
 import { BoardListComponent } from './board-management/board-list/board-list.component';
 import { AuthGuard } from './shared/auth/auth.guard';
 import { LoginComponent } from './user-management/login/login.component';
 import { UserDetailsComponent } from './user-management/user-details/user-details.component';
 import { BoardPanelComponent } from './working-area/board-panel/board-panel.component';
+import { BoardAcceptInviteComponent } from './board-management/board-accept-invite/board-accept-invite.component';
 
 const routes: Routes = [
   {
@@ -33,9 +33,8 @@ const routes: Routes = [
     component: UserDetailsComponent
   },
   {
-    canActivate: [AuthGuard],
-    path: "board-edit/:id",
-    component: DialogBoardEditComponent
+    path: "accept-invite/:invitationId",
+    component: BoardAcceptInviteComponent
   }
 ];
 

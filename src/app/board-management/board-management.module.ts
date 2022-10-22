@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogGeneralManagementComponent } from './dialog-general-management/dialog-general-management.component';
 import { DialogMembersManagementComponent } from './dialog-members-management/dialog-members-management.component';
 import { DialogMemberDeleteComponent } from './dialog-member-delete/dialog-member-delete.component';
+import { BoardAcceptInviteComponent } from './board-accept-invite/board-accept-invite.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DialogMemberDeleteComponent } from './dialog-member-delete/dialog-membe
     DialogBoardEditComponent,
     DialogGeneralManagementComponent,
     DialogMembersManagementComponent,
-    DialogMemberDeleteComponent
+    DialogMemberDeleteComponent,
+    BoardAcceptInviteComponent
   ],
   imports: [
     CommonModule,

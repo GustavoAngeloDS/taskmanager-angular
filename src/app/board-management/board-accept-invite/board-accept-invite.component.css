@@ -1,0 +1,15 @@
+.main-div {
+    position: absolute;
+    background-image: url('../../../assets/AcceptBoardInvitation.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.spinner-loading {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    right: 47%;
+    bottom: 60%;
+}

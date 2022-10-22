@@ -51,4 +51,8 @@ export class BoardManagementService {
   removeMember(boardId: string, memberEmail: string): Observable<Board> {
     return this.httpClient.delete<Board>(this.backendUrl + "/" + boardId + "/remove-member/" + memberEmail);
   }
+
+  confirmBoardInvitation(invitationId: string): Observable<BoardInvitation> {
+    return this.httpClient.put<BoardInvitation>(environment.apiUrl + "/board-invitation/accept-invite/" + invitationId, {});
+  }
 }
