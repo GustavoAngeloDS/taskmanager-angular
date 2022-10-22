@@ -198,10 +198,15 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
     });
   }
 
+  convertDatePaternToDDMMYYYY(date: Date): string {
+    let outputDate = date.toString().replace("-", "").replace("-", "");
+    outputDate = outputDate.substring(outputDate.length - 2) + "-" + outputDate.substring(4, 6) + "-" + outputDate.substring(0, 4)
+    return outputDate;
+  }
+
   isDeliveryOverdue(): boolean {
     let todayDate = (new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }).substring(0, 10).replace("/", "-")).replace("/", "-");
-    let deliveryDate = this.task.deliveryDate!.date!.toString().replace("-", "").replace("-", "");
-    deliveryDate = deliveryDate.substring(deliveryDate.length - 2) + "-" + deliveryDate.substring(4, 6) + "-" + deliveryDate.substring(0, 4)
+    let deliveryDate = this.convertDatePaternToDDMMYYYY(this.task.deliveryDate!.date!);
 
     var currentTime = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }).slice(10).substring(0, 6).trim();
 

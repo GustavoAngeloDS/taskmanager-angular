@@ -32,6 +32,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DialogTagsManagementComponent } from './dialog-tags-management/dialog-tags-management.component';
 import { DialogTagEditComponent } from './dialog-tag-edit/dialog-tag-edit.component';
 import { DialogTagDeleteComponent } from './dialog-tag-delete/dialog-tag-delete.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DialogTagDeleteComponent } from './dialog-tag-delete/dialog-tag-delete.
     MatSelectModule,
     MatInputModule,
     NgSelectModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     {

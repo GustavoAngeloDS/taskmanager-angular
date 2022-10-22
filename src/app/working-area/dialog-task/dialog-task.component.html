@@ -25,7 +25,8 @@
                     <div class="card text-bg-light mb-3" style="padding: 0px;">
                         <div class="card-header">Data de entrega</div>
                         <div class="card-body">
-                            <p class="card-text">{{task.deliveryDate!.date}}</p>
+                            <p class="card-text">{{convertDatePaternToDDMMYYYY(task.deliveryDate!.date!) | mask:
+                                '00/00/0000'}}</p>
                         </div>
                     </div>
                 </div>
