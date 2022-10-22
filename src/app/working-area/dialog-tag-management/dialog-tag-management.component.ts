@@ -7,11 +7,11 @@ import { DialogTagEditComponent } from '../dialog-tag-edit/dialog-tag-edit.compo
 import { WorkingAreaService } from '../services/working-area.service';
 
 @Component({
-  selector: 'app-dialog-tags-management',
-  templateUrl: './dialog-tags-management.component.html',
-  styleUrls: ['./dialog-tags-management.component.css']
+  selector: 'app-dialog-tag-management',
+  templateUrl: './dialog-tag-management.component.html',
+  styleUrls: ['./dialog-tag-management.component.css']
 })
-export class DialogTagsManagementComponent implements OnInit {
+export class DialogTagManagementComponent implements OnInit {
 
   dialogId!: string;
   availableTags!: Array<Tag>

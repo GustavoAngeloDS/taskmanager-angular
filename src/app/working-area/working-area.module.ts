@@ -29,7 +29,7 @@ import { DialogTaskNotifConfigComponent } from './dialog-task-notif-config/dialo
 import { MatInputModule } from '@angular/material/input';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { DialogTagsManagementComponent } from './dialog-tags-management/dialog-tags-management.component';
+import { DialogTagManagementComponent } from './dialog-tag-management/dialog-tag-management.component';
 import { DialogTagEditComponent } from './dialog-tag-edit/dialog-tag-edit.component';
 import { DialogTagDeleteComponent } from './dialog-tag-delete/dialog-tag-delete.component';
 import { NgxMaskModule } from 'ngx-mask';
@@ -44,7 +44,7 @@ import { DialogStackDeleteComponent } from './dialog-stack-delete/dialog-stack-d
     DialogTaskMembersComponent,
     DialogTaskDeliveryDateComponent,
     DialogTaskNotifConfigComponent,
-    DialogTagsManagementComponent,
+    DialogTagManagementComponent,
     DialogTagEditComponent,
     DialogTagDeleteComponent,
     DialogStackDeleteComponent

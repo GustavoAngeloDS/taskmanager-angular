@@ -6,7 +6,7 @@ import { PageBehavior } from 'src/app/shared/models/internal/page-behavior.model
 import { Tag } from 'src/app/shared/models/tag.model';
 import { Task } from 'src/app/shared/models/task.model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-import { DialogTagsManagementComponent } from '../dialog-tags-management/dialog-tags-management.component';
+import { DialogTagManagementComponent } from '../dialog-tag-management/dialog-tag-management.component';
 import { DialogTaskDeliveryDateComponent } from '../dialog-task-delivery-date/dialog-task-delivery-date.component';
 import { DialogTaskMembersComponent } from '../dialog-task-members/dialog-task-members.component';
 import { DialogTaskNotifConfigComponent } from '../dialog-task-notif-config/dialog-task-notif-config.component';
@@ -164,7 +164,7 @@ export class DialogTaskComponent extends PageBehavior implements OnInit {
   }
 
   openDialogTagsManagement(): void {
-    const dialog = this.matDialog.open(DialogTagsManagementComponent, {
+    const dialog = this.matDialog.open(DialogTagManagementComponent, {
       data: {
         boardId: this.data.boardId
       }
