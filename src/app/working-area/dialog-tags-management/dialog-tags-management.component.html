@@ -36,9 +36,9 @@
                     <label>Nome</label>
                     <input type="text" class="form-control" [(ngModel)]="newTag.name" minlength="2" maxlength="10"
                         name="name" #name="ngModel" required>
-                </div>
-                <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
-                    Nome da etiqueta inválido. (Deve conter entre 2 e 10 caracteres).
+                    <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
+                        Nome da etiqueta inválido. (Deve conter entre 2 e 10 caracteres).
+                    </div>
                 </div>
                 <br><br><br><br>
                 <div class="row" style=" bottom: 0px">
