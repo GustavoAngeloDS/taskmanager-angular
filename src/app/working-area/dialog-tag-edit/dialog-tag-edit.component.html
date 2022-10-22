@@ -2,15 +2,23 @@
     <div class="row">
         <h2 style="text-align: center;">Editar etiqueta</h2>
     </div>
-    <div class="row">
-        <label>Nome</label>
-        <input type="text" class="form-control" [(ngModel)]="tag.name">
-    </div>
-    <br>
-    <div class="row">
-        <hr>
-    </div>
-    <div class="row">
-        <button type="button" class="btn btn-success" (click)="updateTag()">Salvar</button>
-    </div>
+    <form #formEditTag="ngForm">
+        <div class="row">
+            <label>Nome</label>
+            <input type="text" class="form-control" [(ngModel)]="tag.name" name="name" #name="ngModel" minlength="2"
+                maxlength="10" required>
+            <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
+                Nome da etiqueta inválido. (Deve conter entre 2 e 10 caracteres).
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-success" [disabled]="formEditTag.form.invalid"
+                (click)="updateTag()">Salvar</button>
+        </div>
+    </form>
 </div>

@@ -27,18 +27,25 @@
             </div>
         </div>
         <div class="col">
-            <div class="row">
-                <h2 style="text-align: center;">Incluir nova etiqueta</h2>
-            </div>
-            <p>Etiquetas são marcações que podem ser inseridas em tarefas como uma forma de tipagem.</p>
-            <div class="row">
-                <label>Nome</label>
-                <input type="text" class="form-control" [(ngModel)]="newTag.name">
-            </div>
-            <br><br><br><br>
-            <div class="row" style=" bottom: 0px">
-                <button type="button" class="btn btn-success" (click)="saveNewTag()">Cadastrar etiqueta</button>
-            </div>
+            <form #formNewTag="ngForm">
+                <div class="row">
+                    <h2 style="text-align: center;">Incluir nova etiqueta</h2>
+                </div>
+                <p>Etiquetas são marcações que podem ser inseridas em tarefas como uma forma de tipagem.</p>
+                <div class="row">
+                    <label>Nome</label>
+                    <input type="text" class="form-control" [(ngModel)]="newTag.name" minlength="2" maxlength="10"
+                        name="name" #name="ngModel" required>
+                </div>
+                <div class="alert alert-danger" *ngIf="name.errors && (name.dirty || name.touched)">
+                    Nome da etiqueta inválido. (Deve conter entre 2 e 10 caracteres).
+                </div>
+                <br><br><br><br>
+                <div class="row" style=" bottom: 0px">
+                    <button type="button" class="btn btn-success" [disabled]="formNewTag.form.invalid"
+                        (click)="saveNewTag()">Cadastrar etiqueta</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
