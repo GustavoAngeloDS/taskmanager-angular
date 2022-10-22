@@ -8,7 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ModalStackEditComponent } from './modal-stack-edit/modal-stack-edit.component';
+import { DialogStackEditComponent } from './dialog-stack-edit/dialog-stack-edit.component';
 import { ModalTaskComponent } from './modal-task/modal-task.component';
 import { DialogTaskComponent } from './dialog-task/dialog-task.component';
 import { DialogTaskMembersComponent } from './dialog-task-members/dialog-task-members.component';
@@ -33,11 +33,12 @@ import { DialogTagsManagementComponent } from './dialog-tags-management/dialog-t
 import { DialogTagEditComponent } from './dialog-tag-edit/dialog-tag-edit.component';
 import { DialogTagDeleteComponent } from './dialog-tag-delete/dialog-tag-delete.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { DialogStackDeleteComponent } from './dialog-stack-delete/dialog-stack-delete.component';
 
 @NgModule({
   declarations: [
     BoardPanelComponent,
-    ModalStackEditComponent,
+    DialogStackEditComponent,
     ModalTaskComponent,
     DialogTaskComponent,
     DialogTaskMembersComponent,
@@ -45,7 +46,8 @@ import { NgxMaskModule } from 'ngx-mask';
     DialogTaskNotifConfigComponent,
     DialogTagsManagementComponent,
     DialogTagEditComponent,
-    DialogTagDeleteComponent
+    DialogTagDeleteComponent,
+    DialogStackDeleteComponent
   ],
   imports: [
     CommonModule,

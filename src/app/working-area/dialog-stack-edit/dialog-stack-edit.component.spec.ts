@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalStackEditComponent } from './modal-stack-edit.component';
+import { DialogStackEditComponent } from './dialog-stack-edit.component';
 
-describe('ModalStackEditComponent', () => {
-  let component: ModalStackEditComponent;
-  let fixture: ComponentFixture<ModalStackEditComponent>;
+describe('DialogStackEditComponent', () => {
+  let component: DialogStackEditComponent;
+  let fixture: ComponentFixture<DialogStackEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalStackEditComponent ]
+      declarations: [ DialogStackEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalStackEditComponent);
+    fixture = TestBed.createComponent(DialogStackEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

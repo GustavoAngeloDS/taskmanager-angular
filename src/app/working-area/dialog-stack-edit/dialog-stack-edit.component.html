@@ -1,0 +1,50 @@
+<div class="container-fluid" style="width: 500px;">
+    <div class="row">
+        <h2> Editar Stack </h2>
+    </div>
+    <div class="row">
+        <hr>
+    </div>
+    <form #formEditStack="ngForm">
+        <div class="row">
+            <div class="col-2">
+                <p>Id:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" disabled value="{{stack.id}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <p>Nome:</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="stackName" #stackName="ngModel" [(ngModel)]="stack.name"
+                    minlength="2" required>
+
+                <div class="alert alert-danger" *ngIf="stackName.errors && (stackName.dirty || stackName.touched)">
+                    O nome informado é inválido. (Deve conter no mínimo 2 caracteres)
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-secondary" [disabled]="formEditStack.form.invalid"
+                (click)="updateStack()">Salvar</button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-outline-dark" (click)="closeDialog()">Cancelar</button>
+        </div>
+        <br>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-danger" (click)="openDialogStackDelete()">Excluir Stack</button>
+
+        </div>
+    </form>
+</div>

@@ -10,7 +10,7 @@ import { Stack } from 'src/app/shared/models/stack.model';
 import { Task } from 'src/app/shared/models/task.model'
 import { environment } from 'src/environments/environment';
 import { DialogTaskComponent } from '../dialog-task/dialog-task.component';
-import { ModalStackEditComponent } from '../modal-stack-edit/modal-stack-edit.component';
+import { DialogStackEditComponent } from '../dialog-stack-edit/dialog-stack-edit.component';
 import { ModalTaskComponent } from '../modal-task/modal-task.component';
 import { WorkingAreaService } from '../services/working-area.service';
 
@@ -150,11 +150,15 @@ export class BoardPanelComponent extends PageBehavior implements OnInit {
     this.draggedTask = new Task();
   }
 
-  openModalStackUpdate(stack: Stack): void {
-    const modal = this.modalService.open(ModalStackEditComponent);
-    modal.componentInstance.stack = stack;
-    modal.componentInstance.boardId = this.board.id!;
-    modal.closed.subscribe({ complete: () => this.findBoard(this.board.id!) });
+  openDialogStackUpdate(stack: Stack): void {
+    const dialog = this.matDialog.open(DialogStackEditComponent);
+    dialog.componentInstance.boardId = this.board.id!;
+    dialog.componentInstance.dialogId = dialog.id;
+    dialog.componentInstance.stack = stack;
+
+    dialog.afterClosed().subscribe({
+      complete: () => this.findBoard(this.board.id!)
+    });
   }
 
   openModalNewTask(stackId?: string): void {
