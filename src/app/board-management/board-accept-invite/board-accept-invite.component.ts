@@ -37,7 +37,7 @@ export class BoardAcceptInviteComponent implements OnInit {
   }
 
   async navigateToLoginPage() {
-    await new Promise(f => setTimeout(f, 5000));
+    await new Promise(f => setTimeout(f, 8000));
     this.router.navigate(["/login"]);
   }
 
