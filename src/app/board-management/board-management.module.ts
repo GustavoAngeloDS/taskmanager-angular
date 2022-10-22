@@ -14,6 +14,11 @@ import { DialogGeneralManagementComponent } from './dialog-general-management/di
 import { DialogMembersManagementComponent } from './dialog-members-management/dialog-members-management.component';
 import { DialogMemberDeleteComponent } from './dialog-member-delete/dialog-member-delete.component';
 import { BoardAcceptInviteComponent } from './board-accept-invite/board-accept-invite.component';
+import { DialogFormTabComponent } from './dialog-form-tab/dialog-form-tab.component';
+import { NgChartsModule } from 'ng2-charts';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FormStackTasksCountComponent } from './form-stack-tasks-count/form-stack-tasks-count.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -26,7 +31,9 @@ import { BoardAcceptInviteComponent } from './board-accept-invite/board-accept-i
     DialogGeneralManagementComponent,
     DialogMembersManagementComponent,
     DialogMemberDeleteComponent,
-    BoardAcceptInviteComponent
+    BoardAcceptInviteComponent,
+    DialogFormTabComponent,
+    FormStackTasksCountComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +41,10 @@ import { BoardAcceptInviteComponent } from './board-accept-invite/board-accept-i
     RouterModule,
     HttpClientModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    NgChartsModule,
+    MatTabsModule,
+    BrowserAnimationsModule
   ]
 })
 export class BoardManagementModule { }

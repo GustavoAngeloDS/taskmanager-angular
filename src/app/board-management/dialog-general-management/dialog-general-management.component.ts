@@ -4,6 +4,7 @@ import { Board } from 'src/app/shared/models/board.model';
 import { DialogBoardDeleteComponent } from '../dialog-board-delete/dialog-board-delete.component';
 import { DialogBoardEditComponent } from '../dialog-board-edit/dialog-board-edit.component';
 import { DialogMembersManagementComponent } from '../dialog-members-management/dialog-members-management.component';
+import { DialogFormTabComponent } from '../dialog-form-tab/dialog-form-tab.component';
 import { BoardManagementService } from '../services/board-management.service';
 
 @Component({
@@ -53,6 +54,15 @@ export class DialogGeneralManagementComponent implements OnInit {
 
   openDialogMembersManagement() {
     const dialog = this.matDialog.open(DialogMembersManagementComponent, {
+      data: {
+        boardId: this.board.id!
+      }
+    });
+    dialog.componentInstance.dialogId = dialog.id;
+  }
+
+  openDialogFormTab() {
+    const dialog = this.matDialog.open(DialogFormTabComponent, {
       data: {
         boardId: this.board.id!
       }
