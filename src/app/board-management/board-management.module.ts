@@ -19,6 +19,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormStackTasksCountComponent } from './form-stack-tasks-count/form-stack-tasks-count.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormOverdueTasksCountComponent } from './form-overdue-tasks-count/form-overdue-tasks-count.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DialogMemberDeleteComponent,
     BoardAcceptInviteComponent,
     DialogFormTabComponent,
-    FormStackTasksCountComponent
+    FormStackTasksCountComponent,
+    FormOverdueTasksCountComponent
   ],
   imports: [
     CommonModule,

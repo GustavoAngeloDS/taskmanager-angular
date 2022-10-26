@@ -24,11 +24,9 @@ export class FormStackTasksCountComponent implements OnInit {
   public barChartData!: ChartConfiguration<'bar'>['data'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private matDialog: MatDialog, private reportService: ReportService) {
-    console.log("CONST");
   }
 
   ngOnInit(): void {
-    console.log("INIT");
     this.getFormData();
   }
 
@@ -45,7 +43,7 @@ export class FormStackTasksCountComponent implements OnInit {
       labels: arrayLabel,
       datasets: [{
         data: arrayData,
-        label: "Tasks"
+        label: "Tarefas"
       }]
     }
 
