@@ -23,17 +23,19 @@
                 </div>
             </span>
             <br>
-
-
             <div class="row">
                 <button type="submit" [disabled]="formLogin.form.invalid" class="btn btn-secondary"
                     (click)="login()">Entrar</button>
                 <p></p>
-                <button type="submit" class="btn btn-light" (click)="openModalNewUser()">Criar uma nova conta</button>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-light" (click)="openDialogNewUser()">Criar uma nova
+                    conta</button>
+            </div>
+            <br>
+            <div class="row">
+                <button type="submit" class="btn btn-info" (click)="openDialogForgotPassword()">Esqueci minha senha</button>
             </div>
         </div>
     </form>
-    <!-- <div class="alert alert-danger" *ngIf="password.errors && (password.dirty || password.touched)">
-        A senha informada é inválida. (Deve conter no mínimo 6 caracteres)
-    </div> -->
 </body>

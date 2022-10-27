@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { SessionService } from 'src/app/shared/services/session.service';
 import { DialogCreateUserComponent } from '../dialog-create-user/dialog-create-user.component';
+import { DialogForgotPasswordComponent } from '../dialog-forgot-password/dialog-forgot-password.component';
 
 @Component({
   selector: 'app-login',
@@ -42,8 +43,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  openModalNewUser(): void {
+  openDialogNewUser(): void {
     const dialog = this.matDialog.open(DialogCreateUserComponent);
+    dialog.componentInstance.dialogId = dialog.id;
+  }
+
+  openDialogForgotPassword() {
+    const dialog = this.matDialog.open(DialogForgotPasswordComponent);
     dialog.componentInstance.dialogId = dialog.id;
   }
 }

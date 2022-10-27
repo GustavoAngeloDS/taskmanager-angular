@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { DialogCreateUserComponent } from './dialog-create-user/dialog-create-user.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { DialogForgotPasswordComponent } from './dialog-forgot-password/dialog-forgot-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     UserDetailsComponent,
-    DialogCreateUserComponent
+    DialogCreateUserComponent,
+    DialogForgotPasswordComponent
   ],
   imports: [
     CommonModule,
