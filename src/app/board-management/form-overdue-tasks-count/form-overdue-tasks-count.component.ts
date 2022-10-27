@@ -15,13 +15,13 @@ export class FormOverdueTasksCountComponent implements OnInit {
   overdueTasksCountArray!: Array<OverdueTasksCount>;
   completed: boolean = false;
 
-  public barChartLegend = true;
+  public pieChartLegend = true;
 
-  public barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    responsive: true,
+  public pieChartOptions: ChartConfiguration<'pie'>['options'] = {
+    responsive: false
   };
 
-  public barChartData!: ChartConfiguration<'bar'>['data'];
+  public pieChartData!: ChartConfiguration<'pie'>['data'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private matDialog: MatDialog, private reportService: ReportService) { }
 
@@ -38,7 +38,7 @@ export class FormOverdueTasksCountComponent implements OnInit {
       arrayData.push(this.overdueTasksCountArray[index].tasksCount!);
     }
 
-    this.barChartData = {
+    this.pieChartData = {
       labels: arrayLabel,
       datasets: [{
         data: arrayData,

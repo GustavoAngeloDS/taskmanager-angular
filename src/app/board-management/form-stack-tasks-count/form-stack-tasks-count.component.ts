@@ -19,6 +19,13 @@ export class FormStackTasksCountComponent implements OnInit {
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
+    scales: {
+      yAxes: {
+        ticks: {
+          stepSize: 1
+        }
+      }
+    }
   };
 
   public barChartData!: ChartConfiguration<'bar'>['data'];
@@ -43,7 +50,9 @@ export class FormStackTasksCountComponent implements OnInit {
       labels: arrayLabel,
       datasets: [{
         data: arrayData,
-        label: "Tarefas"
+        label: "Tarefas",
+        backgroundColor: "#80463A",
+        hoverBackgroundColor: "#FF7360"
       }]
     }
 
