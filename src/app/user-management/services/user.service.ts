@@ -25,6 +25,12 @@ export class UserService {
     return this.httpClient.get(this.backendUrl + "/" + userId);
   }
 
+  requestPasswordReset(userEmail: string): Observable<void> {
+    return this.httpClient.post<void>(this.backendUrl + "/reset-password", {
+      userEmail: userEmail
+    });
+  }
+
   saveUser(user: User): Observable<User> {
     return this.httpClient.post(this.backendUrl, {
       email: user.email,
