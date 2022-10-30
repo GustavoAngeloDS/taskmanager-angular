@@ -31,6 +31,12 @@ export class UserService {
     });
   }
 
+  updatePassword(resetPasswordRequestId: string, newPassword: string): Observable<void> {
+    return this.httpClient.put<void>(this.backendUrl + "/reset-password/" + resetPasswordRequestId, {
+      password: newPassword
+    });
+  }
+
   saveUser(user: User): Observable<User> {
     return this.httpClient.post(this.backendUrl, {
       email: user.email,

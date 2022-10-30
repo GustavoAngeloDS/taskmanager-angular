@@ -14,6 +14,7 @@ export class BasicHttpInterceptorService implements HttpInterceptor {
     if (!req.url.endsWith("/validateLogin")
       && !(req.method === "POST" && req.url.endsWith("/users"))
       && !(req.method === "POST" && req.url.endsWith("/reset-password"))
+      && !(req.method === "PUT" && req.url.includes("/reset-password"))
       && !req.url.includes("/accept-invite/")) {
       if (sessionStorage.getItem("username") && sessionStorage.getItem("basicauth")) {
         req = req.clone({
