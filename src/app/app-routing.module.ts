@@ -6,7 +6,7 @@ import { LoginComponent } from './user-management/login/login.component';
 import { UserDetailsComponent } from './user-management/user-details/user-details.component';
 import { BoardPanelComponent } from './working-area/board-panel/board-panel.component';
 import { BoardAcceptInviteComponent } from './board-management/board-accept-invite/board-accept-invite.component';
-import { PasswordGeneratorComponent } from './user-management/password-generator/password-generator.component';
+import { PasswordResetComponent } from './user-management/password-reset/password-reset.component';
 
 const routes: Routes = [
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: "reset-password/:passwordResetRequestId",
-    component: PasswordGeneratorComponent
+    component: PasswordResetComponent
   }
 ];
 

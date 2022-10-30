@@ -5,11 +5,11 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-password-generator',
-  templateUrl: './password-generator.component.html',
-  styleUrls: ['./password-generator.component.css']
+  selector: 'app-password-reset',
+  templateUrl: './password-reset.component.html',
+  styleUrls: ['./password-reset.component.css']
 })
-export class PasswordGeneratorComponent implements OnInit {
+export class PasswordResetComponent implements OnInit {
 
   user: User = new User();
   requestId!: string;

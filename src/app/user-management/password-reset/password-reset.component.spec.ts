@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PasswordGeneratorComponent } from './password-generator.component';
+import { PasswordResetComponent } from './password-reset.component';
 
-describe('PasswordGeneratorComponent', () => {
-  let component: PasswordGeneratorComponent;
-  let fixture: ComponentFixture<PasswordGeneratorComponent>;
+describe('PasswordResetComponent', () => {
+  let component: PasswordResetComponent;
+  let fixture: ComponentFixture<PasswordResetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PasswordGeneratorComponent ]
+      declarations: [ PasswordResetComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PasswordGeneratorComponent);
+    fixture = TestBed.createComponent(PasswordResetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

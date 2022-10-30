@@ -8,7 +8,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { DialogCreateUserComponent } from './dialog-create-user/dialog-create-user.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { DialogForgotPasswordComponent } from './dialog-forgot-password/dialog-forgot-password.component';
-import { PasswordGeneratorComponent } from './password-generator/password-generator.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { PasswordGeneratorComponent } from './password-generator/password-genera
     UserDetailsComponent,
     DialogCreateUserComponent,
     DialogForgotPasswordComponent,
-    PasswordGeneratorComponent
+    PasswordResetComponent
   ],
   imports: [
     CommonModule,
